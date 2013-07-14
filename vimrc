@@ -34,6 +34,8 @@ Bundle 'fugitive.vim'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Bundle 'tpope/vim-eunuch'
 Bundle 'Efficient-python-folding'
+Bundle 'pythoncomplete'
+Bundle 'rubycomplete.vim'
 
 "------------ end vundle
 
@@ -89,9 +91,10 @@ if !filereadable("Makefile") && !filereadable("makefile") " makefile이 없을�
 endif
 
 autocmd FileType ruby set makeprg=ruby\ -wc\ % "ruby의 경우에는 -c를 이용해서 syntax check를 한다.
-"autocmd FileType ruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby set omnifunc=rubycomplete#Complete
 "autocmd FileType ruby let g:rubycomplete_buffer_loading=1
 "autocmd FileType ruby let g:rubycomplete_classes_in_global=1
+autocmd FileType python set omnifunc=pythoncomplete#Complete " python completion
 
 map <silent> <F7> :make<CR>:bo cw 5<CR> "set F7 to make & show compile error
 imap <silent> <F7> <C-c>:make<CR>:bo cw 5<CR>
