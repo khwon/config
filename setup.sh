@@ -6,7 +6,6 @@ mv ~/.vim ~/.vim.old
 ln -s $DIR/vimfiles ~/.vim
 mv ~/.vimrc ~/.vimrc.old
 ln -s $DIR/vimrc ~/.vimrc
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 mv ~/.tmux.conf ~/.tmux.conf.old
 ln -s $DIR/tmux.conf ~/.tmux.conf
 cp bashrc ~/.bashrc
