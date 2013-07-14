@@ -206,3 +206,7 @@ noremap <F1> <Esc>
 
 "Disable paste mode when leaving Insert Mode
 au InsertLeave * set nopaste
+
+"Disable some warnings on flake8
+let g:syntastic_python_flake8_args='--ignore=E111,E201,E202,E203,E231'
+
