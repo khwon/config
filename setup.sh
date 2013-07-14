@@ -16,4 +16,6 @@ cp bashrc ~/.bashrc
 mv ~/.zshrc ~/.zshrc.old
 ln -s $DIR/oh-my-zsh ~/.oh-my-zsh
 ln -s $DIR/zshrc ~/.zshrc
+mv ~/.gitignore_global ~/.gitignore_global.old
+ln -s $DIR/gitignore_global ~/.gitignore_global
 chsh -s `which zsh`
