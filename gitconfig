@@ -12,3 +12,5 @@
 	trustExitCode = true
 [color]
 	ui = auto
+[push]
+	default = simple
