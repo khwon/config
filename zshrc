@@ -49,6 +49,13 @@ PROMPT=$'%{\e[01;32m%}%n@%m%{\e[00m%}:%{\e[01;34m%}%5c%{\e[00m%}\$ '
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+PATH=$HOME/bin:$PATH
 
-export LC_ALL=en_US.UTF-8  
+export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+export WORKON_HOME=~/.virtualenvs
+if [[ -e /usr/local/bin/virtualenvwrapper.sh ]]; then
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
+function gi() { curl http://www.gitignore.io/api/$@ ;}
