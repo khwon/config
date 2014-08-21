@@ -1,44 +1,25 @@
-"------------- vundle setting
-set nocompatible               " be iMproved
-filetype off                   " required!
+"set nocompatible               " be iMproved
+"filetype off                   " required!
+set nocompatible | filetype indent plugin on | syn on
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+fun! SetupVAM()
+  let c = get(g:, 'vim_addon_manager', {})
+  let g:vim_addon_manager = c
+  let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+  " most used options you may want to use:
+  " let c.log_to_buf = 1
+  " let c.auto_install = 0
+  let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+  if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+    execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
+        \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+  endif
+  call vam#ActivateAddons([], {'auto_install' : 0})
+endfun
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-Bundle 'a.vim'
-Bundle 'coffee.vim'
-"Bundle 'Conque-Shell'
-"Bundle 'rson/vim-conque'
-Bundle 'taglist.vim'
-Bundle 'ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'EasyMotion'
-"Bundle 'AutoComplPop'
-Bundle 'endwise.vim'
-Bundle 'vim-coffee-script'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'Syntastic'
-Bundle 'hgrev'
-"Bundle 'easytags.vim'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-easytags'
-Bundle 'xolox/vim-shell'
-Bundle 'tpope/vim-rails'
-Bundle 'dbext.vim'
-Bundle 'tComment'
-Bundle 'xmledit'
-Bundle 'fugitive.vim'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Bundle 'tpope/vim-eunuch'
-Bundle 'Efficient-python-folding'
-Bundle 'pythoncomplete'
-"Bundle 'rubycomplete.vim'
-
-"------------ end vundle
-
+call SetupVAM()
+VAMActivate a coffee taglist ctrlp github:scrooloose/nerdtree EasyMotion endwise vim-coffee-script Syntastic hgrev rails tComment xmledit fugitive vim-airline github:ChrisKempson/Vim-Tomorrow-Theme
+"vim-eunuch AutoComplPopup easytags pythoncomplete rubycomplete
 
 set bg=dark " background를 dark로 설정한다
 syntax enable
