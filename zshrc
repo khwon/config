@@ -30,20 +30,21 @@ ZSH=$HOME/.oh-my-zsh
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git brew extract gem common-aliases)
+plugins+=(autojump bundler encode64 nyan urltools web-search)
 if [[ -e /etc/zsh_command_not_found ]]; then
-	plugins=(git brew command-not-found extract gem)
-else
-	plugins=(git brew extract gem)
+  plugins+=(command-not-found)
 fi
 
+if [[ "$OSTYPE" == darwin* ]]; then
+  export BROWSER='open'
+	export PATH=/usr/local/bin:$PATH
+  plugins+=(forklift osx)
+fi
 
 source $ZSH/oh-my-zsh.sh
 export CLICOLOR=1export LSCOLORS=ExFxCxDxBxegedabagacad
 
-# Customize to your needs...
-if [[ `uname -a | grep Darwin` != '' ]]; then
-	export PATH=/usr/local/bin:$PATH
-fi
 PROMPT=$'%{\e[01;32m%}%n@%m%{\e[00m%}:%{\e[01;34m%}%5c%{\e[00m%}\$ '
 #TERM="screen-256color"
 
