@@ -30,8 +30,10 @@ ZSH=$HOME/.oh-my-zsh
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew extract gem common-aliases)
+plugins=(git brew extract gem)
 plugins+=(autojump bundler encode64 nyan urltools web-search)
+#temporary disable due to conflict with autojump
+#plugins+=(common-aliases)
 if [[ -e /etc/zsh_command_not_found ]]; then
   plugins+=(command-not-found)
 fi
