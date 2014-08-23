@@ -18,7 +18,7 @@ fun! SetupVAM()
 endfun
 
 call SetupVAM()
-VAMActivate a coffee taglist ctrlp github:scrooloose/nerdtree EasyMotion endwise vim-coffee-script Syntastic hgrev rails tComment xmledit fugitive vim-airline github:ChrisKempson/Vim-Tomorrow-Theme
+VAMActivate a coffee taglist ctrlp github:scrooloose/nerdtree EasyMotion endwise vim-coffee-script Syntastic hgrev rails tComment xmledit fugitive vim-airline github:khwon/Vim-Tomorrow-Theme
 "vim-eunuch AutoComplPopup easytags pythoncomplete rubycomplete
 
 set bg=dark " background를 dark로 설정한다
