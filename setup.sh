@@ -22,3 +22,6 @@ ln -s $DIR/gitignore_global ~/.gitignore_global
 mv ~/.gitconfig ~/.gitconfig.old
 ln -s $DIR/gitconfig ~/.gitconfig
 chsh -s `which zsh`
+
+mkdir ~/bin
+cp $DIR/safe-reattach-to-user-namespace ~/bin
