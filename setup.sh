@@ -25,4 +25,4 @@ chsh -s `which zsh`
 
 mkdir ~/bin
 cp $DIR/safe-reattach-to-user-namespace ~/bin
-chmod +x $DIR/safe-reattach-to-user-namespace ~/bin/safe-reattach-to-user-namespace
+chmod +x ~/bin/safe-reattach-to-user-namespace
