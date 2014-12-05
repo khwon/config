@@ -61,4 +61,4 @@ export WORKON_HOME=~/.virtualenvs
 if [[ -e /usr/local/bin/virtualenvwrapper.sh ]]; then
   source /usr/local/bin/virtualenvwrapper.sh
 fi
-function gi() { curl http://www.gitignore.io/api/$@ ;}
+function gi() { curl https://www.gitignore.io/api/$@ ;}
