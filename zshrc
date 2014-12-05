@@ -57,6 +57,7 @@ fi
 PATH=$HOME/bin:$PATH
 if [[ -e $HOME/.rbenv ]]; then
   PATH=$HOME/.rbenv/bin:$PATH
+  eval "$(rbenv init -)"
 fi
 
 export LC_ALL=en_US.UTF-8
