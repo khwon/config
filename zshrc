@@ -50,9 +50,14 @@ export CLICOLOR=1export LSCOLORS=ExFxCxDxBxegedabagacad
 PROMPT=$'%{\e[01;32m%}%n@%m%{\e[00m%}:%{\e[01;34m%}%5c%{\e[00m%}\$ '
 #TERM="screen-256color"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+if [[ -e $HOME/.rvm ]]; then
+  PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+fi
 PATH=$HOME/bin:$PATH
+if [[ -e $HOME/.rbenv ]]; then
+  PATH=$HOME/.rbenv/bin:$PATH
+fi
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
