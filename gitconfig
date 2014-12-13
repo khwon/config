@@ -2,7 +2,7 @@
 	name = kangheui won
 	email = snowkh@gmail.com
 [core]
-	excludesfile = /Users/kanghee/.gitignore_global
+	excludesfile = ~/.gitignore_global
   editor = vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
