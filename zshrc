@@ -41,11 +41,16 @@ fi
 if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER='open'
 	export PATH=/usr/local/bin:$PATH
+  if [[ -e /usr/local/opt/coreutils/libexec/gnubin ]]; then
+    PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+  fi
   plugins+=(forklift osx)
 fi
 
+
 source $ZSH/oh-my-zsh.sh
-export CLICOLOR=1export LSCOLORS=ExFxCxDxBxegedabagacad
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
 
 PROMPT=$'%{\e[01;32m%}%n@%m%{\e[00m%}:%{\e[01;34m%}%5c%{\e[00m%}\$ '
 #TERM="screen-256color"
