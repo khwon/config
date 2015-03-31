@@ -143,7 +143,7 @@ endif
 autocmd VimEnter * if (open_nerdtree) | call OpenNerdTag() " start nerdtree on startup
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " exit vim if only nerdtree remains
 
-let g:ctrlp_root_markers = ['Gemfile','Makefile','Rakefile']
+let g:ctrlp_root_markers = ['Gemfile','Rakefile']
 
 let g:EasyMotion_leader_key = '<Leader>'
 
