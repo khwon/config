@@ -16,6 +16,8 @@ cp bashrc ~/.bashrc
 mv ~/.zshrc ~/.zshrc.old
 ln -s $DIR/oh-my-zsh ~/.oh-my-zsh
 ln -s $DIR/zshrc ~/.zshrc
+mv ~/.railsrc ~/.railsrc.old
+ln -s $DIR/railsrc ~/.railsrc
 
 mv ~/.gitignore_global ~/.gitignore_global.old
 ln -s $DIR/gitignore_global ~/.gitignore_global
