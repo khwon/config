@@ -200,3 +200,9 @@ let g:syntastic_python_flake8_args='--select=E101,E112,E113,E721,W601,W602,W603,
 "airline configuration
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+
+" easytags configuration
+let g:easytags_async=1
+let g:easytags_syntax_keyword = 'always'
+let g:easytags_dynamic_files = 1
+
