@@ -2,26 +2,71 @@
 "filetype off                   " required!
 set nocompatible | filetype indent plugin on | syn on
 
-fun! SetupVAM()
-  let c = get(g:, 'vim_addon_manager', {})
-  let g:vim_addon_manager = c
-  let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
-  " most used options you may want to use:
-  " let c.log_to_buf = 1
-  " let c.auto_install = 0
-  let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
-  if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
-    execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
-        \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+" Install vim-plug if it isn't installed and call plug#begin() out of box
+function! s:download_vim_plug()
+  if !empty(&rtp)
+    let vimfiles = split(&rtp, ',')[0]
+  else
+    echohl ErrorMsg
+    echomsg 'Unable to determine runtime path for Vim.'
+    echohl NONE
   endif
-  call vam#ActivateAddons([], {'auto_install' : 0})
-endfun
+  if empty(glob(vimfiles . '/autoload/plug.vim'))
+    let plug_url =
+          \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    if executable('curl')
+      let downloader = '!curl -fLo '
+    elseif executable('wget')
+      let downloader = '!wget -O '
+    else
+      echohl ErrorMsg
+      echomsg 'Missing curl or wget executable'
+      echohl NONE
+    endif
+    if !isdirectory(vimfiles . '/autoload')
+      call mkdir(vimfiles . '/autoload', 'p')
+    endif
+    if has('win32')
+      silent execute downloader . vimfiles . '\\autoload\\plug.vim ' . plug_url
+    else
+      silent execute downloader . vimfiles . '/autoload/plug.vim ' . plug_url
+    endif
 
-call SetupVAM()
-VAMActivate a coffee taglist ctrlp github:scrooloose/nerdtree EasyMotion endwise vim-coffee-script Syntastic hgrev rails tComment xmledit fugitive vim-airline github:khwon/Vim-Tomorrow-Theme easytags
-VAMActivate indenthtml vim-javascript vim-eco github:khwon/cscope_maps.vim
-VAMActivate vim-ruby vim-gitgutter
-"vim-eunuch AutoComplPopup easytags pythoncomplete rubycomplete
+    " Install plugins at first
+    autocmd VimEnter * PlugInstall | quit
+  endif
+  call plug#begin(vimfiles . '/plugged')
+endfunction
+
+call s:download_vim_plug()
+
+Plug 'a.vim'
+Plug 'coffee.vim'
+Plug 'taglist.vim'
+Plug 'ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'EasyMotion'
+Plug 'tpope/vim-endwise'
+Plug 'vim-coffee-script'
+Plug 'Syntastic'
+Plug 'hgrev'
+Plug 'tpope/vim-rails'
+Plug 'tComment'
+Plug 'xmledit'
+Plug 'fugitive.vim'
+Plug 'vim-airline'
+Plug 'khwon/Vim-Tomorrow-Theme'
+Plug 'vim-misc'
+Plug 'easytags.vim'
+Plug 'indenthtml.vim'
+Plug 'vim-javascript'
+Plug 'vim-eco'
+Plug 'khwon/cscope_maps.vim'
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-gitgutter'
+
+call plug#end()
+"vim-eunuch AutoComplPopup pythoncomplete rubycomplete
 
 set bg=dark " background를 dark로 설정한다
 syntax enable
