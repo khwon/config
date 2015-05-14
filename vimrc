@@ -41,13 +41,12 @@ endfunction
 call s:download_vim_plug()
 
 Plug 'a.vim'
-Plug 'coffee.vim'
 Plug 'taglist.vim'
 Plug 'ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'EasyMotion'
 Plug 'tpope/vim-endwise'
-Plug 'vim-coffee-script'
+Plug 'vim-coffee-script', { 'for': 'coffee' }
 Plug 'Syntastic'
 Plug 'hgrev'
 Plug 'tpope/vim-rails'
