@@ -64,6 +64,7 @@ Plug 'vim-eco'
 Plug 'khwon/cscope_maps.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-gitgutter'
+Plug 'tpope/vim-dispatch'
 
 call plug#end()
 "vim-eunuch AutoComplPopup pythoncomplete rubycomplete
