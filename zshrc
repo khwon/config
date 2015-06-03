@@ -73,3 +73,7 @@ if [[ -e /usr/local/bin/virtualenvwrapper.sh ]]; then
   source /usr/local/bin/virtualenvwrapper.sh
 fi
 function gi() { curl https://www.gitignore.io/api/$@ ;}
+
+if [[ -e $HOME/.zshrc_local ]]; then
+  source $HOME/.zshrc_local
+fi
