@@ -64,6 +64,7 @@ Plug 'khwon/cscope_maps.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-dispatch'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 "vim-eunuch AutoComplPopup pythoncomplete rubycomplete
