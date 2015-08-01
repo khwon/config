@@ -65,6 +65,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-dispatch'
 Plug 'jiangmiao/auto-pairs'
+Plug 'khwon/vim-conflicted'
 
 call plug#end()
 "vim-eunuch AutoComplPopup pythoncomplete rubycomplete
