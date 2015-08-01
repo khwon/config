@@ -4,6 +4,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
   editor = vim
+  autocrlf = input
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -14,3 +15,6 @@
 	ui = auto
 [push]
 	default = simple
+
+[merge]
+  renamelimit = 2048
