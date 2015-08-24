@@ -52,7 +52,7 @@ source $ZSH/oh-my-zsh.sh
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-PROMPT=$'%{\e[01;32m%}%n@%m%{\e[00m%}:%{\e[01;34m%}%5c%{\e[00m%}\$ '
+PROMPT=$'%{\e[01;32m%}%n@%m%{\e[00m%}:%{\e[01;34m%}%(4~/...%3~/%~)%{\e[00m%}\$ '
 #TERM="screen-256color"
 
 if [[ -e $HOME/.rvm ]]; then
