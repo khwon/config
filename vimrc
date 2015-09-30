@@ -66,6 +66,17 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-dispatch'
 Plug 'jiangmiao/auto-pairs'
 Plug 'khwon/vim-conflicted'
+" Provide CamelCase motion through words
+Plug 'bkad/CamelCaseMotion'
+" Provides insert mode auto-completion for quotes, parens, brackets, etc
+Plug 'Raimondi/delimitMate'
+" ANSI escape
+Plug 'AnsiEsc.vim', { 'for': 'railslog' }
+
+if has('mac') || has('macunix')
+  " Add plist editing support to Vim
+  Plug 'darfink/vim-plist'
+endif
 
 call plug#end()
 "vim-eunuch AutoComplPopup pythoncomplete rubycomplete
@@ -253,3 +264,8 @@ let g:easytags_async=1
 let g:easytags_syntax_keyword = 'always'
 let g:easytags_dynamic_files = 1
 
+" delimitMate
+let g:delimitMate_expand_cr = 2
+
+" ANSI escape for Rails log
+autocmd FileType railslog :AnsiEsc
