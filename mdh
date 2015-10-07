@@ -1,0 +1,4 @@
+#!/bin/sh
+tmpfile=`mktemp /tmp/md_XXXXXX.html`
+pandoc $1 -f markdown_github -t html -s -o $tmpfile
+open $tmpfile

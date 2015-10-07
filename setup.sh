@@ -28,3 +28,6 @@ chsh -s `which zsh`
 mkdir ~/bin
 cp $DIR/safe-reattach-to-user-namespace ~/bin
 chmod +x ~/bin/safe-reattach-to-user-namespace
+
+cp $DIR/mdh ~/bin
+chmod +x ~/bin/mdh

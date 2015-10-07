@@ -13,6 +13,7 @@ htop-osx
 mercurial
 nmap
 openssl
+pandoc
 python
 readline
 reattach-to-user-namespace
