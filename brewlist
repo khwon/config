@@ -8,7 +8,8 @@ cscope
 ctags
 findutils
 git
-grep
+git-flow
+homebrew/dupes/grep
 htop-osx
 mercurial
 nmap
