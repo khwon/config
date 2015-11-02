@@ -6,10 +6,10 @@ coreutils
 cmake
 cscope
 ctags
-findutils
+findutils --with-default-names
 git
 git-flow
-homebrew/dupes/grep
+homebrew/dupes/grep --with-default-names
 htop-osx
 mercurial
 nmap
@@ -19,6 +19,7 @@ python
 readline
 reattach-to-user-namespace
 ssh-copy-id
+thefuck
 tmux
 tree
 vim

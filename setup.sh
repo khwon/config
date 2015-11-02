@@ -31,3 +31,7 @@ chmod +x ~/bin/safe-reattach-to-user-namespace
 
 cp $DIR/mdh ~/bin
 chmod +x ~/bin/mdh
+
+if [[ -e /usr/local/bin/brew ]]; then
+  cat brewlist | xargs brew install
+fi

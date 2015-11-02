@@ -77,3 +77,8 @@ function gi() { curl https://www.gitignore.io/api/$@ ;}
 if [[ -e $HOME/.zshrc_local ]]; then
   source $HOME/.zshrc_local
 fi
+
+# configure thefuck
+if [[ -e /usr/local/bin/fuck ]]; then
+  eval $(thefuck --alias)
+fi
