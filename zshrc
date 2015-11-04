@@ -82,3 +82,7 @@ fi
 if [[ -e /usr/local/bin/fuck ]]; then
   eval $(thefuck --alias)
 fi
+
+# orders for finding in manpages
+MANSECT="3:n:l:8:1:1aout:2:3posix:3pm:3perl:5:4:9:6:7"
+export MANSECT
