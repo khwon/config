@@ -64,12 +64,9 @@ Plug 'khwon/cscope_maps.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-dispatch'
-Plug 'jiangmiao/auto-pairs'
 Plug 'khwon/vim-conflicted'
 " Provide CamelCase motion through words
 Plug 'bkad/CamelCaseMotion'
-" Provides insert mode auto-completion for quotes, parens, brackets, etc
-Plug 'Raimondi/delimitMate'
 " ANSI escape
 Plug 'AnsiEsc.vim', { 'for': 'railslog' }
 
@@ -137,8 +134,6 @@ autocmd FileType ruby set omnifunc=rubycomplete#Complete
 "autocmd FileType ruby let g:rubycomplete_classes_in_global=1
 autocmd FileType python set omnifunc=pythoncomplete#Complete " python completion
 
-map <silent> <F7> :make<CR>:bo cw 5<CR> "set F7 to make & show compile error
-imap <silent> <F7> <C-c>:make<CR>:bo cw 5<CR>
 map <C-j> :cn<CR> " Ctrl + j로 다음 에러를 찾아간다.
 imap <C-j> <esc>:cn<CR>
 map <C-k> :cp<CR>
@@ -165,6 +160,44 @@ if has("gui_running")
 	autocmd WinEnter * setlocal cursorline
 	autocmd WinLeave * setlocal nocursorline
 endif
+
+
+
+" from github.com/astrails/dotvim
+" ignore these files when completing names and in
+" explorer
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc
+set shell=/bin/bash     " use bash for shell commands
+set autowriteall        " Automatically save before commands like :next and :make
+set hidden              " enable multiple modified buffers
+set history=1000
+set autoread            " automatically read file that has been changed on disk and doesn't have changes in vim
+
+
+" center display after searching
+nnoremap n   nzz
+nnoremap N   Nzz
+nnoremap *   *zz
+nnoremap #   #zz
+nnoremap g*  g*zz
+nnoremap g#  g#z
+
+" show red bg for extra whitespace
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
+au InsertLeave * match ExtraWhitespace /\s\+$/
+
+colorscheme Tomorrow-Night-Eighties
+
+"Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+" I can type :help on my own, thanks.
+noremap <F1> <Esc>
+
+"Disable paste mode when leaving Insert Mode
+au InsertLeave * set nopaste
+
 "---------------- Taglist ----------------------
 " F4 : Switch on/off TagList
 nnoremap <silent> <F4> :TlistToggle<CR>
@@ -205,31 +238,6 @@ let g:ctrlp_root_markers = ['Gemfile','Rakefile']
 
 let g:EasyMotion_leader_key = '<Leader>'
 
-" from github.com/astrails/dotvim
-" ignore these files when completing names and in
-" explorer
-set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc
-set shell=/bin/bash     " use bash for shell commands
-set autowriteall        " Automatically save before commands like :next and :make
-set hidden              " enable multiple modified buffers
-set history=1000
-set autoread            " automatically read file that has been changed on disk and doesn't have changes in vim
-
-
-" center display after searching
-nnoremap n   nzz
-nnoremap N   Nzz
-nnoremap *   *zz
-nnoremap #   #zz
-nnoremap g*  g*zz
-nnoremap g#  g#z
-
-" show red bg for extra whitespace
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
-au InsertLeave * match ExtraWhitespace /\s\+$/
-
-colorscheme Tomorrow-Night-Eighties
-
 let g:xml_use_xhtml = 1
 
 nmap <C-c> :call <SID>SynStack()<CR>
@@ -239,17 +247,6 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-
-"Reselect visual block after indent/outdent
-vnoremap < <gv
-vnoremap > >gv
-
-" I can type :help on my own, thanks.
-noremap <F1> <Esc>
-
-
-"Disable paste mode when leaving Insert Mode
-au InsertLeave * set nopaste
 
 "Disable some warnings on flake8
 "let g:syntastic_python_flake8_args='--ignore=E111,E201,E202,E203,E231'
@@ -263,9 +260,6 @@ let g:airline_right_sep=''
 let g:easytags_async=1
 let g:easytags_syntax_keyword = 'always'
 let g:easytags_dynamic_files = 1
-
-" delimitMate
-let g:delimitMate_expand_cr = 2
 
 " ANSI escape for Rails log
 autocmd FileType railslog :AnsiEsc
