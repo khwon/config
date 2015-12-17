@@ -44,7 +44,7 @@ Plug 'a.vim'
 Plug 'taglist.vim'
 Plug 'ctrlp.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'EasyMotion'
+Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-endwise'
 Plug 'vim-coffee-script', { 'for': 'coffee' }
 Plug 'scrooloose/syntastic'
@@ -198,6 +198,12 @@ noremap <F1> <Esc>
 "Disable paste mode when leaving Insert Mode
 au InsertLeave * set nopaste
 
+"highlight the current line of cursor
+set cursorline
+
+" Insert only one space after a '.', '?' and '!' with a join command
+set nojoinspaces
+
 "---------------- Taglist ----------------------
 " F4 : Switch on/off TagList
 nnoremap <silent> <F4> :TlistToggle<CR>
@@ -236,7 +242,16 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 let g:ctrlp_root_markers = ['Gemfile','Rakefile']
 
+" EasyMotion
 let g:EasyMotion_leader_key = '<Leader>'
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
 
 let g:xml_use_xhtml = 1
 
