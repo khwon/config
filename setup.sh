@@ -1,4 +1,15 @@
 #!/bin/bash
+
+function git_clone()
+{
+  if [ ! -e "$HOME/$2" ]; then
+    echo "Cloning '$1'..."
+    git clone "$1" "$HOME/$2"
+  else
+    echoerr "~/$2 already exists."
+  fi
+}
+
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 mv ~/.screenrc ~/.screenrc.old
 ln -s $DIR/screenrc ~/.screenrc
@@ -14,8 +25,9 @@ cp bashrc ~/.bashrc
 #mv ~/.emacs ~/.emacs.old
 #ln -s $DIR/emacs ~/.emacs
 mv ~/.zshrc ~/.zshrc.old
-ln -s $DIR/oh-my-zsh ~/.oh-my-zsh
 ln -s $DIR/zshrc ~/.zshrc
+git_clone https://github.com/b4b4r07/zplug.git ~/.zplug/repos/zplug
+ln -s "$HOME/.zplug/repos/zplug/zplug" "$HOME/.zplug/zplug"
 mv ~/.railsrc ~/.railsrc.old
 ln -s $DIR/railsrc ~/.railsrc
 
