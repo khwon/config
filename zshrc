@@ -103,8 +103,6 @@ zplug "plugins/extract", from:oh-my-zsh
 zplug "plugins/gem", from:oh-my-zsh
 # Git aliases and completion.
 zplug "plugins/git", from:oh-my-zsh
-# tmux aliases and configurations.
-zplug "plugins/tmux", from:oh-my-zsh, if:"which tmux"
 # Load the theme.
 zplug "khwon/lime"
 
