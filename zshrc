@@ -40,7 +40,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 #export CLICOLOR=1
-#[[ "$OSTYPE" == "darwin"* ]] && export LSCOLORS=exfxcxdxbxegedabagacad
+[[ "$OSTYPE" == "darwin"* ]] && export LSCOLORS=ExFxCxDxBxegedabagacad
 
 #TERM="screen-256color"
 
