@@ -1,6 +1,5 @@
-[user]
-	name = kangheui won
-	email = snowkh@gmail.com
+[include]
+  path = ~/.gitconfig_local
 [core]
 	excludesfile = ~/.gitignore_global
   editor = vim
