@@ -24,11 +24,10 @@
 # Uncomment following line if you want red dots to be displayed while waiting for completion
  COMPLETION_WAITING_DOTS="true"
 
+typeset -aU path
 function add_to_path_once()
 {
-  if [[ ":$PATH:" != *":$1:"* ]]; then
-    export PATH="$1:$PATH"
-  fi
+  path=($1 $path)
 }
 
 if [[ "$OSTYPE" == darwin* ]]; then
