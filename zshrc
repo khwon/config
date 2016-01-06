@@ -35,6 +35,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   add_to_path_once "/usr/local/bin"
   if [[ -e /usr/local/opt/coreutils/libexec/gnubin ]]; then
     add_to_path_once "/usr/local/opt/coreutils/libexec/gnubin"
+    export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
   fi
 fi
 
