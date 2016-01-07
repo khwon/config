@@ -104,6 +104,11 @@ zplug "plugins/gem", from:oh-my-zsh
 # Git aliases and completion.
 zplug "plugins/git", from:oh-my-zsh
 # Load the theme.
+LIME_SHOW_HOSTNAME=1
+LIME_USER_COLOR=118
+LIME_DIR_COLOR=12
+LIME_DIR_DISPLAY_COMPONENTS=3
+LIME_USER_DIR_SEPARATOR=:
 zplug "khwon/lime"
 
 # encode64 / decode64 for base64
