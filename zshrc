@@ -129,3 +129,5 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
