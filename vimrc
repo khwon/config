@@ -43,7 +43,6 @@ call s:download_vim_plug()
 Plug 'a.vim'
 Plug 'taglist.vim'
 Plug 'ctrlp.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-endwise'
 Plug 'vim-coffee-script', { 'for': 'coffee' }
@@ -69,6 +68,8 @@ Plug 'khwon/vim-conflicted'
 Plug 'bkad/CamelCaseMotion'
 " ANSI escape
 Plug 'AnsiEsc.vim', { 'for': 'railslog' }
+
+Plug 'tpope/vim-vinegar'
 
 if has('mac') || has('macunix')
   " Add plist editing support to Vim
@@ -213,32 +214,26 @@ let g:Tlist_Use_Right_Window=0
 "------------------------------------------------
 
 " http://stackoverflow.com/questions/6005874/opening-a-window-in-a-horizontal-split-of-a-vertical-split
-fun! OpenNerdTag()
+fun! OpenTaglist()
 	if winnr('$')!=1
 		only
 	endif
-	NERDTree
 	TlistOpen
-	wincmd J
-	wincmd W
-	wincmd L
-	NERDTreeFocus
-	normal AA
-	wincmd p
+	wincmd l
 endfun
 
-let open_nerdtree=1
+let open_sidebar=1
 
 "vertical split & show git diff when git commit
 autocmd FileType gitcommit DiffGitCached | wincmd L | wincmd p
-autocmd FileType gitcommit let open_nerdtree=0
+autocmd FileType gitcommit let open_sidebar=0
 
 if &diff
   "do not open nerdtree and tlist when in diff mode
-  let open_nerdtree=0
+  let open_sidebar=0
 endif
-autocmd VimEnter * if (open_nerdtree && exists(':NERDTree') && exists(':TlistOpen')) | call OpenNerdTag() " start nerdtree on startup
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " exit vim if only nerdtree remains
+autocmd VimEnter * if (open_sidebar && exists(':TlistOpen')) | call OpenTaglist()
+autocmd bufenter * if (winnr("$") == 1 && bufname("%") == "__Tag_List__") | q | endif " exit vim if only sidebar remains
 
 let g:ctrlp_root_markers = ['Gemfile','Rakefile']
 
