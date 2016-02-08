@@ -26,7 +26,7 @@ cp bashrc ~/.bashrc
 #ln -s $DIR/emacs ~/.emacs
 mv ~/.zshrc ~/.zshrc.old
 ln -s $DIR/zshrc ~/.zshrc
-git_clone https://github.com/b4b4r07/zplug.git ~/.zplug/repos/b4b4r07/zplug
+git_clone https://github.com/b4b4r07/zplug.git .zplug/repos/b4b4r07/zplug
 ln -s "$HOME/.zplug/repos/b4b4r07/zplug/zplug" "$HOME/.zplug/zplug"
 mv ~/.railsrc ~/.railsrc.old
 ln -s $DIR/railsrc ~/.railsrc
