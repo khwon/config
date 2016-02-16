@@ -52,7 +52,9 @@ Plug 'tpope/vim-rails'
 Plug 'tComment'
 Plug 'xmledit'
 Plug 'tpope/vim-fugitive'
-Plug 'bling/vim-airline'
+Plug 'junegunn/gv.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'khwon/Vim-Tomorrow-Theme'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
@@ -70,6 +72,11 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'AnsiEsc.vim', { 'for': 'railslog' }
 
 Plug 'tpope/vim-vinegar'
+
+" assembly indentation
+Plug 'khwon/asm.vim'
+
+Plug 'Valloric/YouCompleteMe'
 
 if has('mac') || has('macunix')
   " Add plist editing support to Vim
