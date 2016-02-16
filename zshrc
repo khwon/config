@@ -111,6 +111,8 @@ LIME_DIR_DISPLAY_COMPONENTS=3
 LIME_USER_DIR_SEPARATOR=:
 zplug "khwon/lime"
 
+zplug 'rimraf/k'
+
 # encode64 / decode64 for base64
 zplug "plugins/encode64", from:oh-my-zsh
 # nyan - nyan cat goodness in your shell
