@@ -280,3 +280,6 @@ let g:easytags_dynamic_files = 1
 
 " ANSI escape for Rails log
 autocmd FileType railslog :AnsiEsc
+
+" YouCompleteMe options
+let g:ycm_min_num_of_chars_for_completion=10
