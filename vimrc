@@ -77,6 +77,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'khwon/asm.vim'
 
 Plug 'Valloric/YouCompleteMe'
+Plug 'junegunn/rainbow_parentheses.vim'
 
 if has('mac') || has('macunix')
   " Add plist editing support to Vim
@@ -283,3 +284,7 @@ autocmd FileType railslog :AnsiEsc
 
 " YouCompleteMe options
 let g:ycm_min_num_of_chars_for_completion=10
+
+" rainbow_parentheses
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+au VimEnter * RainbowParentheses
