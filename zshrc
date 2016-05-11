@@ -24,6 +24,8 @@
 # Uncomment following line if you want red dots to be displayed while waiting for completion
  COMPLETION_WAITING_DOTS="true"
 
+ENABLE_CORRECTION="true"
+
 typeset -aU path
 function add_to_path_once()
 {
