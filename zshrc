@@ -86,9 +86,9 @@ export MANSECT
 unset -f add_to_path_once
 
 # Load zplug
-source $HOME/.zplug/zplug
+source $HOME/.zplug/init.zsh
 # Let zplug manage zplug
-zplug "b4b4r07/zplug"
+zplug "zplug/zplug"
 # A cd command that learns - easily navigate directories from the command line.
 zplug "plugins/autojump", from:oh-my-zsh
 # Homebrew aliases and completion.
