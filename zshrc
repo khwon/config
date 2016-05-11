@@ -101,8 +101,6 @@ zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/extract", from:oh-my-zsh
 # Autocompletion for gem command.
 zplug "plugins/gem", from:oh-my-zsh
-# Git aliases and completion.
-zplug "plugins/git", from:oh-my-zsh
 # Load the theme.
 LIME_SHOW_HOSTNAME=1
 LIME_USER_COLOR=118
@@ -123,6 +121,8 @@ zplug "plugins/urltools", from:oh-my-zsh
 # Syntax highlighting bundle. zsh-syntax-highlighting must be loaded after
 # excuting compinit command and sourcing other plugins.
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
+# Git aliases and completion.
+zplug "plugins/git", from:oh-my-zsh, nice:10
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check; then
