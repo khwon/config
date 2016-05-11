@@ -101,13 +101,15 @@ zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/extract", from:oh-my-zsh
 # Autocompletion for gem command.
 zplug "plugins/gem", from:oh-my-zsh
+# load oh-my-zsh/lib/*.zsh
+zplug "lib/", from:oh-my-zsh, use:"*.zsh"
 # Load the theme.
 LIME_SHOW_HOSTNAME=1
 LIME_USER_COLOR=118
 LIME_DIR_COLOR=12
 LIME_DIR_DISPLAY_COMPONENTS=3
 LIME_USER_DIR_SEPARATOR=:
-zplug "khwon/lime"
+zplug "khwon/lime", nice:10
 
 zplug 'rimraf/k'
 
@@ -125,14 +127,13 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "plugins/git", from:oh-my-zsh, nice:10
 
 # Install plugins if there are plugins that have not been installed
-if ! zplug check; then
-  zplug install
-fi
+# disable since it's slow
+#if ! zplug check --verbose; then
+#  zplug install
+#fi
 # Then, source plugins and add commands to $PATH
-zplug load
+zplug load --verbose
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Enable color support
-ls --color -d . &> /dev/null && alias ls='ls --color=auto' || alias ls='ls -G'
