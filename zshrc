@@ -133,3 +133,6 @@ zplug load
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Enable color support
+ls --color -d . &> /dev/null && alias ls='ls --color=auto' || alias ls='ls -G'
