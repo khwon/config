@@ -17,3 +17,5 @@
 
 [merge]
   renamelimit = 2048
+[diff]
+	compactionHeuristic = true
