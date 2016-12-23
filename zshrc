@@ -138,4 +138,5 @@ zplug load --verbose
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+bindkey '^P' fzf-history-widget
 
