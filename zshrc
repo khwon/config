@@ -112,7 +112,7 @@ zplug "plugins/extract", from:oh-my-zsh
 # Autocompletion for gem command.
 zplug "plugins/gem", from:oh-my-zsh
 # load oh-my-zsh/lib/*.zsh
-zplug "lib/", from:oh-my-zsh, use:"*.zsh"
+zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 # Load the theme.
 LIME_SHOW_HOSTNAME=1
 LIME_USER_COLOR=118
