@@ -45,6 +45,9 @@ fi
 
 if [[ "$OSTYPE" == linux* ]]; then
   alias ls='ls --color=auto'
+  if [[ -e $HOME/.linuxbrew/bin ]]; then
+    add_to_path_once "$HOME/.linuxbrew/bin"
+  fi
 fi
 
 #export CLICOLOR=1
