@@ -35,6 +35,7 @@ function add_to_path_once()
 if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER='open'
   add_to_path_once "/usr/local/bin"
+  export LSCOLORS=ExFxCxDxBxegedabagacad
   if [[ -e /usr/local/opt/coreutils/libexec/gnubin ]]; then
     add_to_path_once "/usr/local/opt/coreutils/libexec/gnubin"
     alias ls='ls --color=auto'
@@ -42,8 +43,11 @@ if [[ "$OSTYPE" == darwin* ]]; then
   fi
 fi
 
+if [[ "$OSTYPE" == linux* ]]; then
+  alias ls='ls --color=auto'
+fi
+
 #export CLICOLOR=1
-[[ "$OSTYPE" == "darwin"* ]] && export LSCOLORS=ExFxCxDxBxegedabagacad
 
 #TERM="screen-256color"
 
