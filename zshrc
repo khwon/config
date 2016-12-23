@@ -134,7 +134,8 @@ zplug "plugins/git", from:oh-my-zsh, defer:2
 #  zplug install
 #fi
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+#zplug load --verbose
+zplug load
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
