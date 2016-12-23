@@ -111,7 +111,7 @@ LIME_USER_COLOR=118
 LIME_DIR_COLOR=12
 LIME_DIR_DISPLAY_COMPONENTS=3
 LIME_USER_DIR_SEPARATOR=:
-zplug "khwon/lime", nice:10
+zplug "khwon/lime", defer:2
 
 zplug 'rimraf/k'
 
@@ -124,9 +124,9 @@ zplug "plugins/urltools", from:oh-my-zsh
 
 # Syntax highlighting bundle. zsh-syntax-highlighting must be loaded after
 # excuting compinit command and sourcing other plugins.
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 # Git aliases and completion.
-zplug "plugins/git", from:oh-my-zsh, nice:10
+zplug "plugins/git", from:oh-my-zsh, defer:2
 
 # Install plugins if there are plugins that have not been installed
 # disable since it's slow
