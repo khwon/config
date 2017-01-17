@@ -41,7 +41,7 @@ endfunction
 call s:download_vim_plug()
 
 Plug 'a.vim'
-Plug 'taglist.vim'
+Plug 'majutsushi/tagbar'
 Plug 'ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-endwise'
@@ -213,20 +213,19 @@ set cursorline
 " Insert only one space after a '.', '?' and '!' with a join command
 set nojoinspaces
 
-"---------------- Taglist ----------------------
-" F4 : Switch on/off TagList
-nnoremap <silent> <F4> :TlistToggle<CR>
+"---------------- Tagbar ----------------------
+" F4 : Switch on/off Tagbar
+nnoremap <silent> <F4> :TagbarToggle<CR>
 "in console mode
-let Tlist_Inc_Winwidth=0
-let g:Tlist_Use_Right_Window=0
+let g:tagbar_left = 1
 "------------------------------------------------
 
 " http://stackoverflow.com/questions/6005874/opening-a-window-in-a-horizontal-split-of-a-vertical-split
-fun! OpenTaglist()
+fun! OpenTagbar()
 	if winnr('$')!=1
 		only
 	endif
-	TlistOpen
+  TagbarOpen
 	wincmd l
 endfun
 
@@ -240,8 +239,8 @@ if &diff
   "do not open nerdtree and tlist when in diff mode
   let open_sidebar=0
 endif
-autocmd VimEnter * if (open_sidebar && exists(':TlistOpen')) | call OpenTaglist()
-autocmd bufenter * if (winnr("$") == 1 && bufname("%") == "__Tag_List__") | q | endif " exit vim if only sidebar remains
+autocmd VimEnter * if (open_sidebar && exists(':TagbarOpen')) | call OpenTagbar()
+autocmd bufenter * if (winnr("$") == 1 && bufname("%") == "Tagbar") | q | endif " exit vim if only sidebar remains
 
 let g:ctrlp_root_markers = ['Gemfile','Rakefile']
 
