@@ -288,3 +288,8 @@ let g:ycm_min_num_of_chars_for_completion=10
 " rainbow_parentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 au VimEnter * RainbowParentheses
+
+" temporary fix for shift+k in nvim
+if has("nvim")
+  map K :tab Man <C-R><C-W><CR>
+endif
