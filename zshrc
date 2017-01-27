@@ -90,7 +90,7 @@ if [[ -e /usr/local/bin/fuck ]]; then
 fi
 
 # orders for finding in manpages
-MANSECT="3:n:l:8:1:1aout:2:3posix:3pm:3perl:5:4:9:6:7"
+MANSECT="2:3:3p:1:1p:8:4:5:6:7:9:0p:tcl:n:l:p:o"
 export MANSECT
 
 # Unset local functions
