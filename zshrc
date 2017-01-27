@@ -111,8 +111,10 @@ zplug "plugins/brew", from:oh-my-zsh
 # Run commands with bundle and bundle aliases
 zplug "plugins/bundler", from:oh-my-zsh
 # Guess what to install when running an unknown command.
-zplug "plugins/command-not-found", from:oh-my-zsh
-# Extracts different types of archives
+if [[ "$OSTYPE" == linux* ]]; then
+  zplug "plugins/command-not-found", from:oh-my-zsh
+  # Extracts different types of archives
+fi
 zplug "plugins/extract", from:oh-my-zsh
 # Autocompletion for gem command.
 zplug "plugins/gem", from:oh-my-zsh
