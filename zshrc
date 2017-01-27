@@ -96,10 +96,14 @@ export MANSECT
 # Unset local functions
 unset -f add_to_path_once
 
+if [[ ! -d ~/.zplug ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+    source ~/.zplug/init.zsh && zplug update --self
+fi
+
 # Load zplug
 source $HOME/.zplug/init.zsh
-# Let zplug manage zplug
-zplug "zplug/zplug"
+
 # A cd command that learns - easily navigate directories from the command line.
 zplug "plugins/autojump", from:oh-my-zsh
 # Homebrew aliases and completion.
