@@ -50,20 +50,20 @@ if [[ $_GET_PATH == '' ]]; then
 fi
 
 # use the current user as the prefix of the current tab title
-TAB_TITLE_PREFIX='`'$_GET_PATH' | sed "s:..*/::"`$PROMPT_CHAR'
+TITLE_PATH='`'$_GET_PATH' | sed "s:..*/::"`$PROMPT_CHAR'
 # when at the shell prompt, show a truncated version of the current path (with
 # standard ~ replacement) as the rest of the title.
-TAB_TITLE_PROMPT='$SHELL:t'
+TITLE_PROMPT='$SHELL:t'
 # when running a command, show the title of the command as the rest of the
 # title (truncate to drop the path to the command)
-TAB_TITLE_EXEC='$cmd[1]:t'
+TITLE_EXEC='$cmd[1]:t'
 
 TAB_HARDSTATUS="%m(%n): %~"
 
 # Runs before showing the prompt
 function termsupport_precmd {
   emulate -L zsh
-  title $TAB_TITLE_PREFIX:$TAB_TITLE_PROMPT $TAB_HARDSTATUS
+  title $TITLE_PATH $TAB_HARDSTATUS
 }
 
 # Runs before executing the command
@@ -71,7 +71,7 @@ function termsupport_preexec {
   emulate -L zsh
   setopt extended_glob
   local -a cmd; cmd=(${(z)1}) # the command string
-  title $TAB_TITLE_PREFIX:$TAB_TITLE_EXEC $TAB_HARDSTATUS
+  title $TITLE_EXEC:$TITLE_PATH $TAB_HARDSTATUS
 }
 
 precmd_functions+=(termsupport_precmd)
