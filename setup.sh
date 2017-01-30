@@ -44,6 +44,7 @@ chmod +x ~/bin/mdh
 
 if [[ -e /usr/local/bin/brew ]]; then
   cat brewlist | xargs brew install
+  brew tap homebrew/command-not-found
 fi
 
 # neovim
@@ -53,3 +54,5 @@ ln -s ~/.vimrc ~/.config/nvim/init.vim
 
 mkdir ~/.config/thefuck
 ln -s $DIR/thefuck/settings.py ~/.config/thefuck/settings.py
+
+ln -s $DIR/zsh ~/.config/zsh

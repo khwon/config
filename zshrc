@@ -1,42 +1,14 @@
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="random"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
- COMPLETION_WAITING_DOTS="true"
-
-ENABLE_CORRECTION="true"
-
 typeset -aU path
 function add_to_path_once()
 {
   path=($1 $path)
 }
+# set LS_COLORS
+export LS_COLORS="di=1;34:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 
 if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER='open'
   add_to_path_once "/usr/local/bin"
-  export LSCOLORS=ExFxCxDxBxegedabagacad
-  export LS_COLORS="di=1;34:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
   if [[ -e /usr/local/opt/coreutils/libexec/gnubin ]]; then
     add_to_path_once "/usr/local/opt/coreutils/libexec/gnubin"
     alias ls='ls --color=auto'
@@ -50,10 +22,6 @@ if [[ "$OSTYPE" == linux* ]]; then
     add_to_path_once "$HOME/.linuxbrew/bin"
   fi
 fi
-
-#export CLICOLOR=1
-
-#TERM="screen-256color"
 
 if [[ -e $HOME/.rvm ]]; then
   # Add RVM to PATH for scripting
@@ -96,63 +64,38 @@ export MANSECT
 # Unset local functions
 unset -f add_to_path_once
 
-if [[ ! -d ~/.zplug ]]; then
-    git clone https://github.com/zplug/zplug ~/.zplug
-    source ~/.zplug/init.zsh && zplug update --self
-fi
+# add custom completions
+fpath=(~/.config/zsh $fpath)
 
-# Load zplug
-source $HOME/.zplug/init.zsh
-
-# A cd command that learns - easily navigate directories from the command line.
-zplug "plugins/autojump", from:oh-my-zsh
-# Homebrew aliases and completion.
-zplug "plugins/brew", from:oh-my-zsh
-# Run commands with bundle and bundle aliases
-zplug "plugins/bundler", from:oh-my-zsh
-# Guess what to install when running an unknown command.
-if [[ "$OSTYPE" == linux* ]]; then
-  zplug "plugins/command-not-found", from:oh-my-zsh
-  # Extracts different types of archives
-fi
-zplug "plugins/extract", from:oh-my-zsh
-# Autocompletion for gem command.
-zplug "plugins/gem", from:oh-my-zsh
-# load oh-my-zsh/lib/*.zsh
-zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
-# Load the theme.
-LIME_SHOW_HOSTNAME=1
-LIME_USER_COLOR=118
-LIME_DIR_COLOR=12
-LIME_DIR_DISPLAY_COMPONENTS=3
-LIME_USER_DIR_SEPARATOR=:
-zplug "khwon/lime", defer:2
-
-zplug 'rimraf/k'
-
-# encode64 / decode64 for base64
-zplug "plugins/encode64", from:oh-my-zsh
-# nyan - nyan cat goodness in your shell
-zplug "plugins/nyan", from:oh-my-zsh
-# urlencode / urldecode for url manipulation
-zplug "plugins/urltools", from:oh-my-zsh
-
-# Syntax highlighting bundle. zsh-syntax-highlighting must be loaded after
-# excuting compinit command and sourcing other plugins.
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-# Git aliases and completion.
-zplug "plugins/git", from:oh-my-zsh, defer:2
-
-# Install plugins if there are plugins that have not been installed
-# disable since it's slow
-#if ! zplug check --verbose; then
-#  zplug install
-#fi
-# Then, source plugins and add commands to $PATH
-#zplug load --verbose
-zplug load
+source ~/.config/zsh/config.zsh
+source ~/.config/zsh/plugins.zsh
+source ~/.config/zsh/bundler.plugin.zsh
+# TODO : debug slow startup
+#source ~/.config/zsh/command-not-found.plugin.zsh
+source ~/.config/zsh/extract.plugin.zsh
+source ~/.config/zsh/encode64.plugin.zsh
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey '^P' fzf-history-widget
 
+source <(antibody init)
+
+antibody bundle <<EOF
+khwon/lime
+rimraf/k
+zsh-users/zsh-completions
+EOF
+antibody bundle zsh-users/zsh-syntax-highlighting
+
+# git aliases
+alias gco='git checkout'
+alias gl='git pull'
+alias glgg='git log --graph'
+alias glgga='git log --graph --decorate --all'
+alias gp='git push'
+# ls aliases
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
