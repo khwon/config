@@ -74,6 +74,7 @@ source ~/.config/zsh/bundler.plugin.zsh
 #source ~/.config/zsh/command-not-found.plugin.zsh
 source ~/.config/zsh/extract.plugin.zsh
 source ~/.config/zsh/encode64.plugin.zsh
+source ~/.config/zsh/termsupport.zsh
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
