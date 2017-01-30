@@ -54,7 +54,9 @@ fi
 
 # configure thefuck
 if [[ -e /usr/local/bin/fuck ]]; then
-  eval $(thefuck --alias)
+  # eval $(thefuck --alias)
+  # dirty hack for startup time
+  alias fuck='TF_CMD=$(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 TF_SHELL_ALIASES=$(alias) thefuck $(fc -ln -1 | tail -n 1)) && eval $TF_CMD ; test -n "$TF_CMD" && print -s $TF_CMD'
 fi
 
 # orders for finding in manpages
