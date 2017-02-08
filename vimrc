@@ -52,7 +52,7 @@ Plug 'tpope/vim-rails'
 Plug 'tComment'
 Plug 'xmledit'
 Plug 'tpope/vim-fugitive'
-Plug 'euclio/gitignore.vim'
+Plug 'khwon/gitignore'
 Plug 'junegunn/gv.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -177,6 +177,11 @@ endif
 " ignore these files when completing names and in
 " explorer
 set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc
+
+" set wildignore from gitignore
+autocmd VimEnter * WildignoreFromGitignore
+autocmd VimEnter * WildignoreFromGitignore ~/.gitignore_global
+
 set shell=/bin/bash     " use bash for shell commands
 set autowriteall        " Automatically save before commands like :next and :make
 set hidden              " enable multiple modified buffers
