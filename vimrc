@@ -185,7 +185,6 @@ set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jp
 autocmd VimEnter * WildignoreFromGitignore
 autocmd VimEnter * WildignoreFromGitignore ~/.gitignore_global
 
-set shell=/bin/bash     " use bash for shell commands
 set autowriteall        " Automatically save before commands like :next and :make
 set hidden              " enable multiple modified buffers
 set history=1000
