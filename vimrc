@@ -80,6 +80,9 @@ Plug 'khwon/asm.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'junegunn/rainbow_parentheses.vim'
 
+Plug 'metakirby5/codi.vim'
+
+
 if has('mac') || has('macunix')
   " Add plist editing support to Vim
   Plug 'darfink/vim-plist'
