@@ -40,17 +40,17 @@ endfunction
 
 call s:download_vim_plug()
 
-Plug 'a.vim'
+Plug 'vim-scripts/a.vim'
 Plug 'majutsushi/tagbar'
-Plug 'ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-endwise'
-Plug 'vim-coffee-script', { 'for': 'coffee' }
+Plug 'vim-scripts/vim-coffee-script', { 'for': 'coffee' }
 Plug 'scrooloose/syntastic'
-Plug 'hgrev'
+Plug 'vim-scripts/hgrev'
 Plug 'tpope/vim-rails'
-Plug 'tComment'
-Plug 'xmledit'
+Plug 'tomtom/tcomment_vim'
+Plug 'sukima/xmledit'
 Plug 'tpope/vim-fugitive'
 Plug 'khwon/gitignore'
 Plug 'junegunn/gv.vim'
@@ -59,9 +59,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'khwon/Vim-Tomorrow-Theme'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
-Plug 'indenthtml.vim'
-Plug 'vim-javascript'
-Plug 'vim-eco'
+Plug 'vim-scripts/indenthtml.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'khwon/cscope_maps.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'airblade/vim-gitgutter'
@@ -70,7 +69,7 @@ Plug 'khwon/vim-conflicted'
 " Provide CamelCase motion through words
 Plug 'bkad/CamelCaseMotion'
 " ANSI escape
-Plug 'AnsiEsc.vim', { 'for': 'railslog' }
+Plug 'powerman/vim-plugin-AnsiEsc', { 'for': 'railslog' }
 
 Plug 'tpope/vim-vinegar'
 
