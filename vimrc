@@ -42,7 +42,6 @@ call s:download_vim_plug()
 
 Plug 'vim-scripts/a.vim'
 Plug 'majutsushi/tagbar'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/vim-coffee-script', { 'for': 'coffee' }
@@ -85,6 +84,11 @@ Plug 'metakirby5/codi.vim'
 if has('mac') || has('macunix')
   " Add plist editing support to Vim
   Plug 'darfink/vim-plist'
+  " Assume fzf is installed in osx
+  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+else
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf.vim'
 endif
 
 call plug#end()
@@ -298,4 +302,59 @@ au VimEnter * RainbowParentheses
 " temporary fix for shift+k in nvim
 if has("nvim")
   map K :tab Man <C-R><C-W><CR>
+endif
+
+" fzf setting
+function! s:update_fzf_colors()
+  let rules =
+  \ { 'fg':      [['Normal',       'fg']],
+    \ 'bg':      [['Normal',       'bg']],
+    \ 'hl':      [['Comment',      'fg']],
+    \ 'fg+':     [['CursorColumn', 'fg'], ['Normal', 'fg']],
+    \ 'bg+':     [['CursorColumn', 'bg']],
+    \ 'hl+':     [['Statement',    'fg']],
+    \ 'info':    [['PreProc',      'fg']],
+    \ 'prompt':  [['Conditional',  'fg']],
+    \ 'pointer': [['Exception',    'fg']],
+    \ 'marker':  [['Keyword',      'fg']],
+    \ 'spinner': [['Label',        'fg']],
+    \ 'header':  [['Comment',      'fg']] }
+  let cols = []
+  for [name, pairs] in items(rules)
+    for pair in pairs
+      let code = synIDattr(synIDtrans(hlID(pair[0])), pair[1])
+      if !empty(name) && code > 0
+        call add(cols, name.':'.code)
+        break
+      endif
+    endfor
+  endfor
+  let s:orig_fzf_default_opts = get(s:, 'orig_fzf_default_opts', $FZF_DEFAULT_OPTS)
+  let $FZF_DEFAULT_OPTS = s:orig_fzf_default_opts .
+        \ empty(cols) ? '' : (' --color='.join(cols, ','))
+endfunction
+
+augroup _fzf
+  autocmd!
+  autocmd VimEnter,ColorScheme * call <sid>update_fzf_colors()
+augroup END
+
+nnoremap <C-P> :Files<CR>
+nnoremap <C-\><C-P> :GFiles<CR>
+
+if executable('rg')
+  command! -bang -nargs=* Rg
+        \ call fzf#vim#grep('rg ' .
+        \   '--color=always ' .
+        \   '--glob "!.git/*" ' .
+        \   '--ignore-case ' .
+        \   '--line-number ' .
+        \   '--column ' .
+        \   '--no-heading ' .
+        \   '--hidden ' .
+        \   '--ignore-file=~/.gitignore_global ' .
+        \   '--follow ' .
+        \   <q-args>, 1,
+        \   fzf#vim#with_preview('right:50%'),
+        \   <bang>0)
 endif
