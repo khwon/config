@@ -358,3 +358,8 @@ if executable('rg')
         \   fzf#vim#with_preview('right:50%'),
         \   <bang>0)
 endif
+
+if executable('fd')
+  let $FZF_DEFAULT_COMMAND = 'fd --type f'
+endif
+
