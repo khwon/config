@@ -6,6 +6,7 @@ coreutils
 cmake
 cscope
 ctags
+fd
 findutils --with-default-names
 fzf
 git
@@ -13,12 +14,14 @@ git-flow
 homebrew/dupes/grep --with-default-names
 htop-osx
 mercurial
+neovim
 nmap
 openssl
 pandoc
 python
 readline
 reattach-to-user-namespace
+ripgrep
 ssh-copy-id
 thefuck
 tmux
