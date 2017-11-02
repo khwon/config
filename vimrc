@@ -120,50 +120,20 @@ set backspace=2
 set dy+=uhex "show unprintable characters as a hex number
 "set transparency = 3 "macvim only
 set clipboard=unnamed "share clipboard with register
-"set statusline=%F%m%r%h%w\ \:\ %{&ff},%Y\ %=[\%03.3b,0x\%02.2B]\ \ \ %l,%c%V\ (%p%%)
 set laststatus=2
 set scrolloff=3  " 커서의 위아래로 항상 세줄의 여유가 있게끔.
 set completeopt=menu,menuone,longest " do not show preview window on omnicompletion
-"let g:acp_behaviorKeywordLength = 5
-"let g:acp_behaviorRubyOmniMethodLength = 5
-"let g:acp_behaviorRubyOmniSymbolLength = 5
 command! W w " :W로 저장
-command! E Explore
 
 au BufRead,BufNewFile *.cc set filetype=cpp "*.cc를 c++로 인식
 if has("win32")
        set makeprg=nmake "windows 환경에선 make대신 nmake사용
 endif
-if !filereadable("Makefile") && !filereadable("makefile") " makefile이 없을시에 자동 컴파일 설정
-       if has("unix") " unix계열의 경우에 gcc, g++을 사용한다.
-        autocmd FileType c set makeprg=gcc\ -o\ %<\ -O2\ -W\ -Wall\ -g\ %
-        autocmd FileType cpp set makeprg=g++\ -o\ %<\ -O2\ -W\ -Wall\ -g\ %
-       elseif has("win32") " windows의 경우에 cl을 사용한다.
-               autocmd FileType c set makeprg=cl\ /O2\ %
-               autocmd FIleType cpp set makeprg=cl\ /O2\ %
-       endif
-       autocmd FileType java set makeprg=javac\ % "java의 경우에는 javac를 사용한다.
-endif
-
-autocmd FileType ruby set makeprg=ruby\ -wc\ % "ruby의 경우에는 -c를 이용해서 syntax check를 한다.
-autocmd FileType ruby set omnifunc=rubycomplete#Complete
-"autocmd FileType ruby let g:rubycomplete_buffer_loading=1
-"autocmd FileType ruby let g:rubycomplete_classes_in_global=1
-autocmd FileType python set omnifunc=pythoncomplete#Complete " python completion
 
 map <C-j> :cn<CR> " Ctrl + j로 다음 에러를 찾아간다.
 imap <C-j> <esc>:cn<CR>
 map <C-k> :cp<CR>
 imap <C-k> <esc>:cp<CR> " Ctrl + k로 이전 에러를 찾아간다.
-if has("unix")
-       map <silent> <C-F5> :!./%<<CR>
-       imap <silent> <C-F5> <C-c>:!./%<<CR>
-elseif has("win32")
-       map <silent> <C-F5> :make<CR>:!%<.exe<CR>
-       imap <silent> <C-F5> <C-c>:!./%<.exe<CR>
-endif
-"Ctrl + F5에 실행을 할당한다.
-
 
 " man page settings
 autocmd FileType ruby set keywordprg=ri
@@ -254,8 +224,6 @@ endif
 autocmd VimEnter * if (open_sidebar && exists(':TagbarOpen')) | call OpenTagbar()
 autocmd bufenter * if (winnr("$") == 1 && bufname("%") == "Tagbar") | q | endif " exit vim if only sidebar remains
 
-let g:ctrlp_root_markers = ['Gemfile','Rakefile']
-
 " EasyMotion
 let g:EasyMotion_leader_key = '<Leader>'
 map <Leader>l <Plug>(easymotion-lineforward)
@@ -266,16 +234,6 @@ let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
-
-let g:xml_use_xhtml = 1
-
-nmap <C-c> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
 
 "Disable some warnings on flake8
 "let g:syntastic_python_flake8_args='--ignore=E111,E201,E202,E203,E231'
