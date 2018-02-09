@@ -1,3 +1,4 @@
+getantibody/antibody/antibody
 autoconf
 automake
 autojump
@@ -7,11 +8,11 @@ cmake
 cscope
 ctags
 fd
-findutils --with-default-names
+findutils
 fzf
 git
 git-flow
-homebrew/dupes/grep --with-default-names
+grep
 htop-osx
 mercurial
 neovim
