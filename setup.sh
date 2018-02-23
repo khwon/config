@@ -45,6 +45,7 @@ chmod +x ~/bin/mdh
 if [[ -e /usr/local/bin/brew ]]; then
   cat brewlist | xargs brew install
   brew tap homebrew/command-not-found
+  $(brew --prefix)/opt/fzf/install
 fi
 
 # neovim
