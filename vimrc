@@ -263,6 +263,12 @@ if has("nvim")
   map K :tab Man <C-R><C-W><CR>
 endif
 
+" use homebrew python in neovim
+if has("nvim")
+  let g:python2_host_prog = '/usr/local/bin/python'
+  let g:python3_host_prog = '/usr/local/bin/python3'
+endif
+
 " fzf setting
 function! s:update_fzf_colors()
   let rules =
