@@ -207,11 +207,11 @@ let g:tagbar_left = 1
 
 " http://stackoverflow.com/questions/6005874/opening-a-window-in-a-horizontal-split-of-a-vertical-split
 fun! OpenTagbar()
-	if winnr('$')!=1
-		only
-	endif
+  if winnr('$')!=1
+    only
+  endif
   TagbarOpen
-	wincmd l
+  wincmd l
 endfun
 
 let open_sidebar=1
@@ -259,7 +259,10 @@ let g:ycm_min_num_of_chars_for_completion=10
 
 " rainbow_parentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-au VimEnter * RainbowParentheses
+augroup rainbow_c
+  autocmd!
+  autocmd FileType c,c++ RainbowParentheses
+augroup END
 
 " temporary fix for shift+k in nvim
 if has("nvim")
@@ -344,7 +347,7 @@ if !empty(glob("/usr/local/opt/llvm/bin/clang-tidy"))
 endif
 
 let g:ale_linters = {
-      \ 'c': ['clang-tidy', 'cppcheck']
+      \ 'c': ['clangtidy', 'cppcheck']
       \}
 
 " echodoc.vim
