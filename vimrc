@@ -333,11 +333,19 @@ endif
 
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
+" ale / clang-tidy
+if !empty(glob("/usr/local/opt/llvm/bin/clang-tidy"))
+  let g:ale_c_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
+  let g:ale_c_clangtidy_checks = ['clang-*', 'cert-*', 'google-*']
+  let g:ale_cpp_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
+  let g:ale_cpp_clangtidy_checks = ['clang-*', 'cert-*', 'google-*']
+endif
+
+let g:ale_linters = {
+      \ 'c': ['clang-tidy', 'cppcheck']
+      \}
+
 " echodoc.vim
 let g:echodoc#enable_at_startup = 1
 set noshowmode
 
-let g:ale_c_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
-let g:ale_c_clangtidy_checks = ['clang-*', 'cert-*', 'google-*']
-let g:ale_cpp_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
-let g:ale_cpp_clangtidy_checks = ['clang-*', 'cert-*', 'google-*']
