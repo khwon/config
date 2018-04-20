@@ -328,3 +328,9 @@ if executable('fd')
   let $FZF_DEFAULT_COMMAND = 'fd --type f'
 endif
 
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
+let g:ale_c_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
+let g:ale_c_clangtidy_checks = ['clang-*', 'cert-*', 'google-*']
+let g:ale_cpp_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
+let g:ale_cpp_clangtidy_checks = ['clang-*', 'cert-*', 'google-*']

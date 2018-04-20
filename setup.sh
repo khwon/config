@@ -17,6 +17,7 @@ ln -s $DIR/screenrc ~/.screenrc
 #ln -s $DIR/vimfiles ~/.vim
 mv ~/.vimrc ~/.vimrc.old
 ln -s $DIR/vimrc ~/.vimrc
+ln -s $DIR/ycm_extra_conf.py ~/.ycm_extra_conf.py
 mv ~/.tmux.conf ~/.tmux.conf.old
 ln -s $DIR/tmux.conf ~/.tmux.conf
 cp bashrc ~/.bashrc
