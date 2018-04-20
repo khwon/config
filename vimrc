@@ -77,6 +77,9 @@ Plug 'tpope/vim-vinegar'
 Plug 'khwon/asm.vim'
 
 Plug 'Valloric/YouCompleteMe'
+" Echo preview window in command line
+Plug 'khwon/echodoc.vim'
+
 Plug 'junegunn/rainbow_parentheses.vim'
 
 Plug 'metakirby5/codi.vim'
@@ -329,6 +332,10 @@ if executable('fd')
 endif
 
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
+" echodoc.vim
+let g:echodoc#enable_at_startup = 1
+set noshowmode
 
 let g:ale_c_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
 let g:ale_c_clangtidy_checks = ['clang-*', 'cert-*', 'google-*']
