@@ -331,7 +331,9 @@ if executable('fd')
   let $FZF_DEFAULT_COMMAND = 'fd --type f'
 endif
 
+" Youcompleteme
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 0 " turn off diag
 
 " ale / clang-tidy
 if !empty(glob("/usr/local/opt/llvm/bin/clang-tidy"))
