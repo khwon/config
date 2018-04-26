@@ -62,4 +62,8 @@ ln -s $DIR/zsh ~/.config/zsh
 if [[ "$OSTYPE" == darwin* ]]; then
   # turn off antialiasing for terminal.app
   defaults write com.apple.Terminal AppleFontSmoothing -int 0
+  # gureum config
+  defaults write org.youknowone.inputmethod.Gureum CIMRomanModeByEscapeKey YES
+  # set shortcut for gureum to cmd + space
+  defaults write org.youknowone.inputmethod.Gureum CIMInputModeExchangeKeyModifier 1048576
 fi
