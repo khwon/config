@@ -341,9 +341,9 @@ let g:ycm_show_diagnostics_ui = 0 " turn off diag
 " ale / clang-tidy
 if !empty(glob("/usr/local/opt/llvm/bin/clang-tidy"))
   let g:ale_c_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
-  let g:ale_c_clangtidy_checks = ['clang-*', 'cert-*', 'google-*']
+  let g:ale_c_clangtidy_checks = ['clang-*', 'cert-*', 'google-*', '-cert-err58-cpp']
   let g:ale_cpp_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
-  let g:ale_cpp_clangtidy_checks = ['clang-*', 'cert-*', 'google-*']
+  let g:ale_cpp_clangtidy_checks = ['clang-*', 'cert-*', 'google-*', '-cert-err58-cpp']
 endif
 
 let g:ale_linters = {
