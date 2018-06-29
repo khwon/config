@@ -347,7 +347,8 @@ if !empty(glob("/usr/local/opt/llvm/bin/clang-tidy"))
 endif
 
 let g:ale_linters = {
-      \ 'c': ['clangtidy', 'cppcheck']
+      \ 'c': ['clangtidy', 'cppcheck'],
+      \ 'cpp': ['clangtidy', 'cppcheck']
       \}
 
 " echodoc.vim
