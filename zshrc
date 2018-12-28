@@ -14,6 +14,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
     alias ls='ls --color=auto'
     export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
   fi
+  if [[ -e /usr/local/opt/ruby/bin ]]; then
+    add_to_path_once "/usr/local/opt/ruby/bin"
+  fi
 fi
 
 if [[ "$OSTYPE" == linux* ]]; then
