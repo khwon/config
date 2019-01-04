@@ -43,6 +43,7 @@ call s:download_vim_plug()
 Plug 'vim-scripts/a.vim'
 Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
+Plug 'markonm/traces.vim'
 Plug 'tpope/vim-endwise'
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
