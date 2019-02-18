@@ -17,6 +17,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   if [[ -e /usr/local/opt/ruby/bin ]]; then
     add_to_path_once "/usr/local/opt/ruby/bin"
   fi
+  add_to_path_once $(gem environment | grep "EXECUTABLE DIRECTORY" | awk '{print $NF}')
 fi
 
 if [[ "$OSTYPE" == linux* ]]; then
