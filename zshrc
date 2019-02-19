@@ -23,7 +23,10 @@ fi
 if [[ "$OSTYPE" == linux* ]]; then
   alias ls='ls --color=auto'
   if [[ -e $HOME/.linuxbrew/bin ]]; then
-    add_to_path_once "$HOME/.linuxbrew/bin"
+    eval $($HOME/.linuxbrew/bin/brew shellenv)
+  fi
+  if [[ -e /home/linuxbrew/.linuxbrew ]]; then
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
   fi
 fi
 
