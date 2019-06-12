@@ -199,6 +199,9 @@ set cursorline
 " Insert only one space after a '.', '?' and '!' with a join command
 set nojoinspaces
 
+" Supress 'Added cscope database ~'
+set nocscopeverbose
+
 "---------------- Tagbar ----------------------
 " F4 : Switch on/off Tagbar
 nnoremap <silent> <F4> :TagbarToggle<CR>
