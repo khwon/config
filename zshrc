@@ -1,4 +1,15 @@
 typeset -aU path
+
+bundle_install() {
+  local cores_num
+  if [ "$(uname)" = 'Darwin' ]; then
+    cores_num="$(sysctl -n hw.ncpu)"
+  else
+    cores_num="$(nproc)"
+  fi
+  bundle install --jobs="$cores_num" "$@"
+}
+
 function add_to_path_once()
 {
   path=($1 $path)
@@ -95,8 +106,12 @@ else
 fi
 zplugin light zsh-users/zsh-completions
 
+# A lightweight start point of shell configuration
+zplugin light yous/vanilli.sh
+
 zplugin light khwon/lime
 zplugin light rimraf/k
+
 # Syntax-highlighting for Zshell – fine granularity, number of features, 40 work
 # hours themes (short name F-Sy-H)
 if is-at-least 5.3; then
@@ -108,17 +123,26 @@ else
 fi
 zplugin light zdharma/fast-syntax-highlighting
 
-# add custom completions
-fpath=(~/.config/zsh $fpath)
+zplugin ice svn
+zplugin snippet OMZ::plugins/extract
+zplugin snippet OMZ::lib/termsupport.zsh
 
-source ~/.config/zsh/config.zsh
-source ~/.config/zsh/plugins.zsh
-source ~/.config/zsh/bundler.plugin.zsh
-# TODO : debug slow startup
-#source ~/.config/zsh/command-not-found.plugin.zsh
-source ~/.config/zsh/extract.plugin.zsh
-source ~/.config/zsh/encode64.plugin.zsh
-source ~/.config/zsh/termsupport.zsh
+# Load autojump
+if command -v autojump >/dev/null; then
+  if [ -f "$HOME/.autojump/etc/profile.d/autojump.sh" ]; then
+    source "$HOME/.autojump/etc/profile.d/autojump.sh"
+  elif [ -f /etc/profile.d/autojump.zsh ]; then
+    source /etc/profile.d/autojump.zsh
+  elif [ -f /usr/share/autojump/autojump.zsh ]; then
+    source /usr/share/autojump/autojump.zsh
+  elif [ -n "$BREW_PREFIX" ]; then
+    if [ -f "$BREW_PREFIX/etc/autojump.sh" ]; then
+      source "$BREW_PREFIX/etc/autojump.sh"
+    fi
+  fi
+elif [ -f "$HOME/.autojump/etc/profile.d/autojump.sh" ]; then
+  source "$HOME/.autojump/etc/profile.d/autojump.sh"
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey '^P' fzf-history-widget

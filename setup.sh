@@ -57,8 +57,6 @@ ln -s ~/.vimrc ~/.config/nvim/init.vim
 mkdir ~/.config/thefuck
 ln -s $DIR/thefuck/settings.py ~/.config/thefuck/settings.py
 
-ln -s $DIR/zsh ~/.config/zsh
-
 if [[ "$OSTYPE" == darwin* ]]; then
   # turn off antialiasing for terminal.app
   defaults write com.apple.Terminal AppleFontSmoothing -int 0
