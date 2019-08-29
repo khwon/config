@@ -25,18 +25,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   if [[ -e /usr/local/homebrew/bin ]]; then
     add_to_path_once "/usr/local/homebrew/bin"
   fi
-  if [[ -e /usr/local/opt/coreutils/libexec/gnubin ]]; then
-    add_to_path_once "/usr/local/opt/coreutils/libexec/gnubin"
-    alias ls='ls --color=auto'
-    export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-  else
-    export CLICOLOR=1
-    export LSCOLORS="ExFxCxDxBxegedabagacad"
-  fi
-  if [[ -e /usr/local/opt/ruby/bin ]]; then
-    add_to_path_once "/usr/local/opt/ruby/bin"
-  fi
-  add_to_path_once $(gem environment | grep "EXECUTABLE DIRECTORY" | awk '{print $NF}')
+  export CLICOLOR=1
+  export LSCOLORS="ExFxCxDxBxegedabagacad"
 fi
 
 if [[ "$OSTYPE" == linux* ]]; then
@@ -47,6 +37,26 @@ if [[ "$OSTYPE" == linux* ]]; then
   if [[ -e /home/linuxbrew/.linuxbrew ]]; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
   fi
+fi
+
+#brew settings
+if command -v brew >/dev/null; then
+  BREW_PREFIX="$(brew --prefix)"
+  if [[ -e $BREW_PREFIX/opt ]]; then
+    BREW_OPT_PREFIX=$BREW_PREFIX/opt
+  else
+    BREW_OPT_PREFIX="/usr/local/opt"
+  fi
+  if [[ -e $BREW_OPT_PREFIX/coreutils/libexec/gnubin ]]; then
+    add_to_path_once "$BREW_OPT_PREFIX/coreutils/libexec/gnubin"
+    alias ls='ls --color=auto'
+    export MANPATH="$BREW_OPT_PREFIX/coreutils/libexec/gnuman:$MANPATH"
+  else
+  fi
+  if [[ -e $BREW_OPT_PREFIX/ruby/bin ]]; then
+    add_to_path_once "$BREW_OPT_PREFIX/ruby/bin"
+  fi
+  add_to_path_once $(gem environment | grep "EXECUTABLE DIRECTORY" | awk '{print $NF}')
 fi
 
 if [[ -e $HOME/.rvm ]]; then
@@ -147,6 +157,10 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey '^P' fzf-history-widget
+
+# Unset local functions and variables
+unset BREW_PREFIX
+unset BREW_OPT_PREFIX
 
 # git aliases
 alias gco='git checkout'
