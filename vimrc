@@ -77,7 +77,6 @@ Plug 'tpope/vim-vinegar'
 " assembly indentation
 Plug 'khwon/asm.vim'
 
-Plug 'Valloric/YouCompleteMe'
 " Echo preview window in command line
 Plug 'khwon/echodoc.vim'
 
