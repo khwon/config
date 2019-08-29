@@ -17,6 +17,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
     add_to_path_once "/usr/local/opt/coreutils/libexec/gnubin"
     alias ls='ls --color=auto'
     export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+  else
+    export CLICOLOR=1
+    export LSCOLORS="ExFxCxDxBxegedabagacad"
   fi
   if [[ -e /usr/local/opt/ruby/bin ]]; then
     add_to_path_once "/usr/local/opt/ruby/bin"
