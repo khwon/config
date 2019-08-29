@@ -122,7 +122,14 @@ set backspace=2
 "set cscopetag "use cscope for tag commands
 set dy+=uhex "show unprintable characters as a hex number
 "set transparency = 3 "macvim only
-set clipboard=unnamed "share clipboard with register
+
+"share clipboard with system
+if has('unnamedplus')
+  set clipboard=unnamedplus
+else
+  set clipboard=unnamed
+endif
+
 set laststatus=2
 set scrolloff=3  " 커서의 위아래로 항상 세줄의 여유가 있게끔.
 set completeopt=menu,menuone,longest " do not show preview window on omnicompletion
