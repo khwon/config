@@ -253,6 +253,7 @@ let g:airline_right_sep=''
 let g:easytags_async=1
 let g:easytags_syntax_keyword = 'always'
 let g:easytags_dynamic_files = 1
+let g:easytags_suppress_ctags_warning = 1
 
 " ANSI escape for Rails log
 autocmd FileType railslog :AnsiEsc
