@@ -77,6 +77,34 @@ export MANSECT
 # Unset local functions
 unset -f add_to_path_once
 
+# Use Zplugin
+if [ ! -e "$HOME/.zplugin/bin/zplugin.zsh" ]; then
+  mkdir ~/.zplugin
+  git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+fi
+source "$HOME/.zplugin/bin/zplugin.zsh"
+
+# Additional completion definitions for Zsh
+if is-at-least 5.3; then
+  zplugin ice lucid wait'0' blockf
+else
+  zplugin ice blockf
+fi
+zplugin light zsh-users/zsh-completions
+
+zplugin light khwon/lime
+zplugin light rimraf/k
+# Syntax-highlighting for Zshell – fine granularity, number of features, 40 work
+# hours themes (short name F-Sy-H)
+if is-at-least 5.3; then
+  zplugin ice lucid wait'0' atinit'zpcompinit; zpcdreplay'
+else
+  autoload -Uz compinit
+  compinit
+  zplugin cdreplay -q
+fi
+zplugin light zdharma/fast-syntax-highlighting
+
 # add custom completions
 fpath=(~/.config/zsh $fpath)
 
@@ -89,18 +117,8 @@ source ~/.config/zsh/extract.plugin.zsh
 source ~/.config/zsh/encode64.plugin.zsh
 source ~/.config/zsh/termsupport.zsh
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey '^P' fzf-history-widget
-
-source <(antibody init)
-
-antibody bundle <<EOF
-khwon/lime
-rimraf/k
-zsh-users/zsh-completions
-EOF
-antibody bundle zsh-users/zsh-syntax-highlighting
 
 # git aliases
 alias gco='git checkout'
