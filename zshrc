@@ -19,6 +19,7 @@ export LS_COLORS="di=1;34:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=3
 
 if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER='open'
+  export DISPLAY=:0
   add_to_path_once "/usr/local/bin"
   # alternative hombrew installation path
   if [[ -e /usr/local/homebrew/bin ]]; then
