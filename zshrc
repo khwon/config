@@ -173,3 +173,11 @@ alias lsa='ls -lah'
 alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
+
+#update DISPLAY env variable
+update_display() {
+  #update only in screen or tmux
+  if [ -n "$STY" -o -n "$TMUX" ]; then
+    export DISPLAY="`tmux show-env | sed -n 's/^DISPLAY=//p'`"
+  fi
+}
