@@ -45,13 +45,10 @@ Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'markonm/traces.vim'
 Plug 'tpope/vim-endwise'
-Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'vim-scripts/hgrev'
 Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-rails'
 Plug 'tomtom/tcomment_vim'
-Plug 'sukima/xmledit'
 Plug 'tpope/vim-fugitive'
 Plug 'khwon/gitignore'
 Plug 'junegunn/gv.vim'
@@ -60,28 +57,29 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'khwon/Vim-Tomorrow-Theme'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
-Plug 'vim-scripts/indenthtml.vim'
-Plug 'pangloss/vim-javascript'
 Plug 'khwon/cscope_maps.vim'
-Plug 'vim-ruby/vim-ruby'
 Plug 'airblade/vim-gitgutter'
+" :Make
 Plug 'tpope/vim-dispatch'
 Plug 'khwon/vim-conflicted'
+" Language support
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'pangloss/vim-javascript'
+Plug 'sukima/xmledit'
+Plug 'vim-scripts/indenthtml.vim'
+Plug 'khwon/asm.vim' " for assembly indentation
 " Provide CamelCase motion through words
 Plug 'bkad/CamelCaseMotion'
 " ANSI escape
 Plug 'powerman/vim-plugin-AnsiEsc', { 'for': 'railslog' }
-
+" for '-' instead of :Ex
 Plug 'tpope/vim-vinegar'
-
-" assembly indentation
-Plug 'khwon/asm.vim'
-
 " Echo preview window in command line
 Plug 'khwon/echodoc.vim'
-
 Plug 'junegunn/rainbow_parentheses.vim'
-
+" :Codi for scratchpad
 Plug 'metakirby5/codi.vim'
 
 
