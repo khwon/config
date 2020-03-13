@@ -44,8 +44,7 @@ cp $DIR/mdh ~/bin
 chmod +x ~/bin/mdh
 
 if [[ -e /usr/local/bin/brew ]]; then
-  cat brewlist | xargs brew install
-  brew tap homebrew/command-not-found
+  brew bundle --file=$DIR/Brewfile
   $(brew --prefix)/opt/fzf/install
 fi
 
