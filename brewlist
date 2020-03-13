@@ -1,6 +1,4 @@
 getantibody/antibody/antibody
-autoconf
-automake
 autojump
 binutils
 coreutils
@@ -13,14 +11,11 @@ fzf
 git
 git-flow
 grep
-htop-osx
-mercurial
+htop
 neovim
 nmap
-openssl
 pandoc
 python
-readline
 reattach-to-user-namespace
 ripgrep
 ssh-copy-id
