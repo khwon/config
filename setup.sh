@@ -46,6 +46,15 @@ chmod +x ~/bin/mdh
 if [[ -e /usr/local/bin/brew ]]; then
   brew bundle --file=$DIR/Brewfile
   $(brew --prefix)/opt/fzf/install
+  if [[ "$OSTYPE" == darwin* ]]; then
+    for cask in $(brew cask list); do
+      APP="$(brew cask info "$cask" |
+        awk '/.* \(App\)/ { sub(" \\(App\\)",""); print  }')"
+      if [[ ! -z "$APP" ]]; then
+        sudo xattr -dr "/Applications/$APP"
+      fi
+    done
+  fi
 fi
 
 # neovim
