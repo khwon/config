@@ -47,12 +47,8 @@ mas "Amphetamine", id:937984704
 mas "Screenie - Screenshot Manager 2.2", id:965442961
 mas "Microsoft Remote Desktop 10", id:1295203466
 mas "Lyrical", id:924743736
-mas "KakaoTalk", id:869223134
 mas "WiFi Explorer", id:494803304
-mas "Slack", id:803453959
 mas "Monity", id:915542151
 mas "Battery Monitor", id:836505650
 mas "Movist", id:461788075
 mas "1Blocker", id:1107421413
-mas "Reeder", id:880001334
-mas "Airmail", id:918858936
