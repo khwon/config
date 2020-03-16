@@ -1,5 +1,7 @@
-cask "virtualbox"
+cask "dropbox"
+cask "monity-helper"
 cask "tunnelblick"
+cask "virtualbox"
 mas "Tweetbot", id:1384080005
 mas "KakaoTalk", id:869223134
 mas "Slack", id:803453959
