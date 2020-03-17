@@ -103,11 +103,11 @@ export MANSECT
 unset -f add_to_path_once
 
 # Use Zplugin
-if [ ! -e "$HOME/.zplugin/bin/zplugin.zsh" ]; then
-  mkdir ~/.zplugin
-  git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+if [ ! -e "$HOME/.zinit/bin/zinit.zsh" ]; then
+  mkdir ~/.zinit
+  git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 fi
-source "$HOME/.zplugin/bin/zplugin.zsh"
+source "$HOME/.zinit/bin/zinit.zsh"
 
 # Additional completion definitions for Zsh
 if is-at-least 5.3; then
