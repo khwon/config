@@ -11,11 +11,9 @@ brew "coreutils"
 brew "cscope"
 brew "ctags"
 brew "fd"
-brew "findutils", args: ["with-default-names"]
 brew "fzf"
 brew "git"
 brew "git-flow"
-brew "grep", args: ["with-default-names"]
 brew "htop"
 brew "minicom"
 brew "neovim"
