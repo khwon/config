@@ -21,8 +21,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER='open'
   export DISPLAY=:0
   add_to_path_once "/usr/local/bin"
-  # alternative hombrew installation path
-  if [[ -e /usr/local/homebrew/bin ]]; then
+  # alternative homebrew installation path
+  if [[ -e /usr/local/homebrew/bin && ! -e /usr/local/bin/brew ]]; then
     add_to_path_once "/usr/local/homebrew/bin"
   fi
   export CLICOLOR=1
