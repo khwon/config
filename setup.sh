@@ -66,12 +66,5 @@ mkdir ~/.config/thefuck
 ln -s $DIR/thefuck/settings.py ~/.config/thefuck/settings.py
 
 if [[ "$OSTYPE" == darwin* ]]; then
-  # turn off long press latin characters
-  defaults write -g ApplePressAndHoldEnabled -bool false
-  # turn off antialiasing for terminal.app
-  defaults write com.apple.Terminal AppleFontSmoothing -int 0
-  # gureum config
-  defaults write org.youknowone.inputmethod.Gureum CIMRomanModeByEscapeKey YES
-  # set shortcut for gureum to cmd + space
-  defaults write org.youknowone.inputmethod.Gureum CIMInputModeExchangeKeyModifier 1048576
+  $DIR/osx.sh
 fi
