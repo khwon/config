@@ -27,6 +27,8 @@ cp bashrc ~/.bashrc
 #ln -s $DIR/emacs ~/.emacs
 mv ~/.zshrc ~/.zshrc.old
 ln -s $DIR/zshrc ~/.zshrc
+mv ~/.p10k.zsh ~/.p10k.zsh.old
+ln -s $DIR/p10k.zsh ~/.p10k.zsh
 mv ~/.railsrc ~/.railsrc.old
 ln -s $DIR/railsrc ~/.railsrc
 

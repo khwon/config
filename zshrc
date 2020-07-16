@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 typeset -aU path
 
 bundle_install() {
@@ -120,7 +127,8 @@ zinit light zsh-users/zsh-completions
 # A lightweight start point of shell configuration
 zinit light yous/vanilli.sh
 
-zinit light khwon/lime
+#zinit light khwon/lime
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light rimraf/k
 
 # Syntax-highlighting for Zshell – fine granularity, number of features, 40 work
@@ -181,3 +189,6 @@ update_display() {
     export DISPLAY="`tmux show-env | sed -n 's/^DISPLAY=//p'`"
   fi
 }
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
