@@ -1,41 +1,27 @@
 #!/bin/bash
 
-function git_clone()
+function install_rc()
 {
-  if [ ! -e "$HOME/$2" ]; then
-    echo "Cloning '$1'..."
-    git clone "$1" "$HOME/$2"
-  else
-    echoerr "~/$2 already exists."
+  echo "installing '$1'.."
+  if [ -e "$HOME/.$1" ]; then
+    mv "$HOME/.$1" "$HOME/.$1.old"
   fi
+  ln -s "$DIR/$1" "$HOME/.$1"
 }
 
 DIR="$( cd "$( dirname "$0" )" && pwd )"
-mv ~/.screenrc ~/.screenrc.old
-ln -s $DIR/screenrc ~/.screenrc
-#mv ~/.vim ~/.vim.old
-#ln -s $DIR/vimfiles ~/.vim
-mv ~/.vimrc ~/.vimrc.old
-ln -s $DIR/vimrc ~/.vimrc
-ln -s $DIR/ycm_extra_conf.py ~/.ycm_extra_conf.py
-mv ~/.tmux.conf ~/.tmux.conf.old
-ln -s $DIR/tmux.conf ~/.tmux.conf
-cp bashrc ~/.bashrc
-#mv ~/.emacs.d ~/.emacs.d.old
-#ln -s $DIR/emacs.d ~/.emacs.d
-#mv ~/.emacs ~/.emacs.old
-#ln -s $DIR/emacs ~/.emacs
-mv ~/.zshrc ~/.zshrc.old
-ln -s $DIR/zshrc ~/.zshrc
-mv ~/.p10k.zsh ~/.p10k.zsh.old
-ln -s $DIR/p10k.zsh ~/.p10k.zsh
-mv ~/.railsrc ~/.railsrc.old
-ln -s $DIR/railsrc ~/.railsrc
+install_rc screenrc
+install_rc vimrc
+install_rc ycm_extra_conf.py
+install_rc tmux.conf
+install_rc bashrc
+install_rc zshrc
+install_rc p10k.zsh
+install_rc railsrc
 
-mv ~/.gitignore_global ~/.gitignore_global.old
-ln -s $DIR/gitignore_global ~/.gitignore_global
-mv ~/.gitconfig ~/.gitconfig.old
-ln -s $DIR/gitconfig ~/.gitconfig
+install_rc gitignore_global
+install_rc gitconfig
+
 chsh -s `which zsh`
 
 mkdir ~/bin
