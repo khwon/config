@@ -111,32 +111,32 @@ source "$HOME/.zinit/bin/zinit.zsh"
 
 # Additional completion definitions for Zsh
 if is-at-least 5.3; then
-  zplugin ice lucid wait'0' blockf
+  zinit ice lucid wait'0' blockf
 else
-  zplugin ice blockf
+  zinit ice blockf
 fi
-zplugin light zsh-users/zsh-completions
+zinit light zsh-users/zsh-completions
 
 # A lightweight start point of shell configuration
-zplugin light yous/vanilli.sh
+zinit light yous/vanilli.sh
 
-zplugin light khwon/lime
-zplugin light rimraf/k
+zinit light khwon/lime
+zinit light rimraf/k
 
 # Syntax-highlighting for Zshell – fine granularity, number of features, 40 work
 # hours themes (short name F-Sy-H)
 if is-at-least 5.3; then
-  zplugin ice lucid wait'0' atinit'zpcompinit; zpcdreplay'
+  zinit ice lucid wait'0' atinit'zpcompinit; zpcdreplay'
 else
   autoload -Uz compinit
   compinit
-  zplugin cdreplay -q
+  zinit cdreplay -q
 fi
-zplugin light zdharma/fast-syntax-highlighting
+zinit light zdharma/fast-syntax-highlighting
 
-zplugin ice svn
-zplugin snippet OMZ::plugins/extract
-zplugin snippet OMZ::lib/termsupport.zsh
+zinit ice svn
+zinit snippet OMZ::plugins/extract
+zinit snippet OMZ::lib/termsupport.zsh
 
 # Load autojump
 if command -v autojump >/dev/null; then
