@@ -70,6 +70,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'sukima/xmledit'
 Plug 'vim-scripts/indenthtml.vim'
 Plug 'khwon/asm.vim' " for assembly indentation
+Plug 'rust-lang/rust.vim'
 " Provide CamelCase motion through words
 Plug 'bkad/CamelCaseMotion'
 " ANSI escape
@@ -360,6 +361,9 @@ let g:ale_linters = {
       \ 'c': ['clangtidy', 'cppcheck'],
       \ 'cpp': ['clangtidy', 'cppcheck']
       \}
+
+highlight ALEError ctermbg=232
+highlight ALEWarning ctermbg=232
 
 " echodoc.vim
 let g:echodoc#enable_at_startup = 1
