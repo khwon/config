@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 typeset -aU path
 
 bundle_install() {
@@ -17,10 +10,28 @@ bundle_install() {
   bundle install --jobs="$cores_num" "$@"
 }
 
-function add_to_path_once()
+add_to_path_once()
 {
-  path=($1 $path)
+  if [ -d $1 ]; then
+    path=($1 $path)
+  fi
 }
+
+source_if_exists()
+{
+  if [[ -r $1 ]]; then
+    source $1
+    return 0
+  else
+    return 1
+  fi
+}
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+source_if_exists "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+
 # set LS_COLORS
 export LS_COLORS="di=1;34:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 
@@ -69,13 +80,11 @@ fi
 if [[ -e $HOME/.rvm ]]; then
   # Add RVM to PATH for scripting
   add_to_path_once "$HOME/.rvm/bin"
-  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+  source_if_exists "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 fi
 
 # Set PATH to include user's bin if it exists
-if [ -d "$HOME/bin" ]; then
-  add_to_path_once "$HOME/bin"
-fi
+add_to_path_once "$HOME/bin"
 
 if [[ -e $HOME/.rbenv ]]; then
   add_to_path_once "$HOME/.rbenv/bin"
@@ -86,14 +95,11 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export WORKON_HOME=~/.virtualenvs
-if [[ -e /usr/local/bin/virtualenvwrapper.sh ]]; then
-  source /usr/local/bin/virtualenvwrapper.sh
-fi
+source_if_exists /usr/local/bin/virtualenvwrapper.sh
+
 function gi() { curl https://www.gitignore.io/api/$@ ;}
 
-if [[ -e $HOME/.zshrc_local ]]; then
-  source $HOME/.zshrc_local
-fi
+source_if_exists $HOME/.zshrc_local
 
 # configure thefuck
 if [[ -e /usr/local/bin/fuck ]]; then
@@ -105,9 +111,6 @@ fi
 # orders for finding in manpages
 MANSECT="2:3:3p:1:1p:8:4:5:6:7:9:0p:tcl:n:l:p:o"
 export MANSECT
-
-# Unset local functions
-unset -f add_to_path_once
 
 # Use Zplugin
 if [ ! -e "$HOME/.zinit/bin/zinit.zsh" ]; then
@@ -147,28 +150,22 @@ zinit snippet OMZ::plugins/extract
 zinit snippet OMZ::lib/termsupport.zsh
 
 # Load autojump
-if command -v autojump >/dev/null; then
-  if [ -f "$HOME/.autojump/etc/profile.d/autojump.sh" ]; then
-    source "$HOME/.autojump/etc/profile.d/autojump.sh"
-  elif [ -f /etc/profile.d/autojump.zsh ]; then
-    source /etc/profile.d/autojump.zsh
-  elif [ -f /usr/share/autojump/autojump.zsh ]; then
-    source /usr/share/autojump/autojump.zsh
-  elif [ -n "$BREW_PREFIX" ]; then
-    if [ -f "$BREW_PREFIX/etc/autojump.sh" ]; then
-      source "$BREW_PREFIX/etc/autojump.sh"
-    fi
-  fi
-elif [ -f "$HOME/.autojump/etc/profile.d/autojump.sh" ]; then
-  source "$HOME/.autojump/etc/profile.d/autojump.sh"
+autojump_locations=(
+  "$HOME/.autojump/etc/profile.d/autojump.sh"
+  "/etc/profile.d/autojump.zsh"
+  "/usr/share/autojump/autojump.zsh"
+)
+if [ -n "$BREW_PREFIX" ]; then
+  autojump_locations=($autojump_locations "$BREW_PREFIX/etc/autojump.sh")
 fi
+for loc in $autojump_locations; do
+  if source_if_exists $loc; then
+    break
+  fi
+done
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source_if_exists ~/.fzf.zsh
 bindkey '^P' fzf-history-widget
-
-# Unset local functions and variables
-unset BREW_PREFIX
-unset BREW_OPT_PREFIX
 
 # git aliases
 alias gco='git checkout'
@@ -191,4 +188,10 @@ update_display() {
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source_if_exists ~/.p10k.zsh
+
+# Unset local functions and variables
+unset BREW_PREFIX
+unset BREW_OPT_PREFIX
+unset -f add_to_path_once
+unset -f source_if_exists
