@@ -164,7 +164,10 @@ for loc in $autojump_locations; do
   fi
 done
 
-source_if_exists ~/.fzf.zsh
+if ! source_if_exists ~/.fzf.zsh; then
+  source_if_exists /usr/share/doc/fzf/examples/completion.zsh
+  source_if_exists /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
 bindkey '^P' fzf-history-widget
 
 # git aliases
