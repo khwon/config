@@ -43,6 +43,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
   if [[ -e /usr/local/homebrew/bin && ! -e /usr/local/bin/brew ]]; then
     add_to_path_once "/usr/local/homebrew/bin"
   fi
+  if [[ -e /opt/homebrew/bin ]]; then
+    add_to_path_once "/opt/homebrew/bin"
+  fi
   export CLICOLOR=1
   export LSCOLORS="ExFxCxDxBxegedabagacad"
 fi
