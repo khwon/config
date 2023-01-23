@@ -44,7 +44,7 @@ if [[ -e $BREW ]]; then
   $($BREW --prefix)/opt/fzf/install
   if [[ "$OSTYPE" == darwin* ]]; then
     for cask in $($BREW cask list); do
-      APP="$($BREW cask info "$cask" |
+      APP="$($BREW info "$cask" --cask |
         awk '/.* \(App\)/ { sub(" \\(App\\)",""); print  }')"
       if [[ ! -z "$APP" ]]; then
         sudo xattr -dr "/Applications/$APP"
