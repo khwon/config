@@ -31,12 +31,20 @@ chmod +x ~/bin/safe-reattach-to-user-namespace
 cp $DIR/mdh ~/bin
 chmod +x ~/bin/mdh
 
+BREW=""
 if [[ -e /usr/local/bin/brew ]]; then
-  brew bundle --file=$DIR/Brewfile
-  $(brew --prefix)/opt/fzf/install
+  BREW="/usr/local/bin/brew"
+fi
+if [[ -e /opt/homebrew/bin/brew ]]; then
+  BREW="/opt/homebrew/bin/brew"
+fi
+
+if [[ -e $BREW ]]; then
+  $BREW bundle --file=$DIR/Brewfile
+  $($BREW --prefix)/opt/fzf/install
   if [[ "$OSTYPE" == darwin* ]]; then
-    for cask in $(brew cask list); do
-      APP="$(brew cask info "$cask" |
+    for cask in $($BREW cask list); do
+      APP="$($BREW cask info "$cask" |
         awk '/.* \(App\)/ { sub(" \\(App\\)",""); print  }')"
       if [[ ! -z "$APP" ]]; then
         sudo xattr -dr "/Applications/$APP"
