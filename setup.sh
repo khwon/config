@@ -3,10 +3,10 @@
 function install_rc()
 {
   echo "installing '$1'.."
-  if [ -e "$HOME/.$1" ] || [ -L "$HOME/.$1" ]; then
+  if [ -e "$HOME/.$1" ] && [ ! -L "$HOME/.$1" ]; then
     mv "$HOME/.$1" "$HOME/.$1.old"
   fi
-  ln -s "$DIR/$1" "$HOME/.$1"
+  ln -sfn "$DIR/$1" "$HOME/.$1"
 }
 
 DIR="$( cd "$( dirname "$0" )" && pwd )"
