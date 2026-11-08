@@ -45,8 +45,7 @@ Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'markonm/traces.vim'
 Plug 'tpope/vim-endwise'
-Plug 'w0rp/ale'
-Plug 'vim-scripts/hgrev'
+Plug 'dense-analysis/ale'
 Plug 'tpope/vim-sleuth'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
@@ -55,8 +54,6 @@ Plug 'junegunn/gv.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'khwon/Vim-Tomorrow-Theme'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
 Plug 'khwon/cscope_maps.vim'
 Plug 'airblade/vim-gitgutter'
 " :Make
@@ -64,13 +61,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'khwon/vim-conflicted'
 " Language support
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
-Plug 'pangloss/vim-javascript'
 Plug 'sukima/xmledit'
-Plug 'vim-scripts/indenthtml.vim'
 Plug 'khwon/asm.vim' " for assembly indentation
-Plug 'rust-lang/rust.vim'
 " Provide CamelCase motion through words
 Plug 'bkad/CamelCaseMotion'
 " ANSI escape
@@ -86,11 +79,10 @@ Plug 'pechorin/any-jump.vim'
 
 
 if has('mac') || has('macunix')
-  " Add plist editing support to Vim
-  Plug 'darfink/vim-plist'
   " Assume fzf is installed in osx
   let brew_prefix = substitute(system('brew --prefix'), '[\x0]$', '', '')
-  Plug brew_prefix . '/opt/fzf' | Plug 'junegunn/fzf.vim'
+  let s:fzf_dir = isdirectory('/opt/homebrew/opt/fzf') ? '/opt/homebrew/opt/fzf' : '/usr/local/opt/fzf'
+  Plug s:fzf_dir | Plug 'junegunn/fzf.vim'
 else
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
@@ -114,7 +106,6 @@ set smartcase "소문자로 검색시 대소문자 무시, 대문자로 검색�
 filet plugin indent on " filetype에 따른 plugin, indetation을 켠다.
 set fencs=ucs-bom,utf-8,cp949 "try this encodings when open files
 set showmatch "match brakets
-set autowrite "auto save when :make or :next
 set foldmethod=syntax " syntax에 따라 folding을 한다.
 set foldlevel=9999999 "open all fold
 set km-=stopsel " ctrl+f & ctrl+b don't stop visual mode
@@ -136,15 +127,14 @@ set scrolloff=3  " 커서의 위아래로 항상 세줄의 여유가 있게끔.
 set completeopt=menu,menuone,longest " do not show preview window on omnicompletion
 command! W w " :W로 저장
 
-au BufRead,BufNewFile *.cc set filetype=cpp "*.cc를 c++로 인식
 if has("win32")
        set makeprg=nmake "windows 환경에선 make대신 nmake사용
 endif
 
-map <C-j> :cn<CR> " Ctrl + j로 다음 에러를 찾아간다.
+map <C-j> :cn<CR>
 imap <C-j> <esc>:cn<CR>
 map <C-k> :cp<CR>
-imap <C-k> <esc>:cp<CR> " Ctrl + k로 이전 에러를 찾아간다.
+imap <C-k> <esc>:cp<CR>
 
 " man page settings
 autocmd FileType ruby set keywordprg=ri
@@ -182,7 +172,7 @@ nnoremap N   Nzz
 nnoremap *   *zz
 nnoremap #   #zz
 nnoremap g*  g*zz
-nnoremap g#  g#z
+nnoremap g#  g#zz
 
 " show red bg for extra whitespace
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
@@ -246,10 +236,6 @@ let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
-"Disable some warnings on flake8
-"let g:syntastic_python_flake8_args='--ignore=E111,E201,E202,E203,E231'
-let g:syntastic_python_flake8_args='--select=E101,E112,E113,E721,W601,W602,W603,W604,F401,F402,F404,F811,F812,F821,F822,F823,F831,F841,N801,N802,N803,N804,N805,N806,N811,N812,N813,N814'
-
 "airline configuration
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -263,25 +249,16 @@ let g:easytags_suppress_ctags_warning = 1
 " ANSI escape for Rails log
 autocmd FileType railslog :AnsiEsc
 
-" YouCompleteMe options
-let g:ycm_min_num_of_chars_for_completion=10
-
 " rainbow_parentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 augroup rainbow_c
   autocmd!
-  autocmd FileType c,c++ RainbowParentheses
+  autocmd FileType c,cpp RainbowParentheses
 augroup END
 
 " temporary fix for shift+k in nvim
 if has("nvim")
   map K :tab Man <C-R><C-W><CR>
-endif
-
-" use homebrew python in neovim
-if has("nvim")
-  let g:python2_host_prog = '/usr/local/bin/python'
-  let g:python3_host_prog = '/usr/local/bin/python3'
 endif
 
 " fzf setting
@@ -342,10 +319,6 @@ endif
 if executable('fd')
   let $FZF_DEFAULT_COMMAND = 'fd --type f'
 endif
-
-" Youcompleteme
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_show_diagnostics_ui = 0 " turn off diag
 
 " ale / clang-tidy
 if !empty(glob("/usr/local/opt/llvm/bin/clang-tidy"))
