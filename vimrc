@@ -80,8 +80,8 @@ Plug 'pechorin/any-jump.vim'
 
 if has('mac') || has('macunix')
   " Assume fzf is installed in osx
-  let s:fzf_dir = isdirectory('/opt/homebrew/opt/fzf') ? '/opt/homebrew/opt/fzf' : '/usr/local/opt/fzf'
-  Plug s:fzf_dir | Plug 'junegunn/fzf.vim'
+  Plug isdirectory('/opt/homebrew/opt/fzf') ? '/opt/homebrew/opt/fzf' : '/usr/local/opt/fzf'
+  Plug 'junegunn/fzf.vim'
 else
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
