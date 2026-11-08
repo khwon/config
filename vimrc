@@ -80,7 +80,6 @@ Plug 'pechorin/any-jump.vim'
 
 if has('mac') || has('macunix')
   " Assume fzf is installed in osx
-  let brew_prefix = substitute(system('brew --prefix'), '[\x0]$', '', '')
   let s:fzf_dir = isdirectory('/opt/homebrew/opt/fzf') ? '/opt/homebrew/opt/fzf' : '/usr/local/opt/fzf'
   Plug s:fzf_dir | Plug 'junegunn/fzf.vim'
 else
@@ -240,12 +239,6 @@ omap / <Plug>(easymotion-tn)
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 
-" easytags configuration
-let g:easytags_async=1
-let g:easytags_syntax_keyword = 'always'
-let g:easytags_dynamic_files = 1
-let g:easytags_suppress_ctags_warning = 1
-
 " ANSI escape for Rails log
 autocmd FileType railslog :AnsiEsc
 
@@ -321,12 +314,15 @@ if executable('fd')
 endif
 
 " ale / clang-tidy
-if !empty(glob("/usr/local/opt/llvm/bin/clang-tidy"))
-  let g:ale_c_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
-  let g:ale_c_clangtidy_checks = ['clang-*', 'cert-*', 'google-*', '-cert-err58-cpp']
-  let g:ale_cpp_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
-  let g:ale_cpp_clangtidy_checks = ['clang-*', 'cert-*', 'google-*', '-cert-err58-cpp']
-endif
+for s:clang_tidy in ['/opt/homebrew/opt/llvm/bin/clang-tidy', '/usr/local/opt/llvm/bin/clang-tidy']
+  if executable(s:clang_tidy)
+    let g:ale_c_clangtidy_executable = s:clang_tidy
+    let g:ale_cpp_clangtidy_executable = s:clang_tidy
+    break
+  endif
+endfor
+let g:ale_c_clangtidy_checks = ['clang-*', 'cert-*', 'google-*', '-cert-err58-cpp']
+let g:ale_cpp_clangtidy_checks = ['clang-*', 'cert-*', 'google-*', '-cert-err58-cpp']
 
 let g:ale_linters = {
       \ 'c': ['clangtidy', 'cppcheck'],

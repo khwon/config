@@ -48,15 +48,16 @@ if [[ "$OSTYPE" == linux* ]]; then
 fi
 
 # brew settings
-for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew /usr/local/homebrew/bin/brew
+for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew /usr/local/homebrew/bin/brew \
   /home/linuxbrew/.linuxbrew/bin/brew "$HOME/.linuxbrew/bin/brew"; do
   if [[ -x "$brew_bin" ]]; then
     eval "$("$brew_bin" shellenv)"
     break
   fi
 done
+unset brew_bin
 if command -v brew >/dev/null; then
-  BREW_PREFIX="$(brew --prefix)"
+  BREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix)}"
   if [[ -e $BREW_PREFIX/opt ]]; then
     BREW_OPT_PREFIX=$BREW_PREFIX/opt
   else
@@ -66,7 +67,6 @@ if command -v brew >/dev/null; then
     add_to_path_once "$BREW_OPT_PREFIX/coreutils/libexec/gnubin"
     alias ls='ls --color=auto'
     export MANPATH="$BREW_OPT_PREFIX/coreutils/libexec/gnuman:$MANPATH"
-  else
   fi
   if [[ -e $BREW_OPT_PREFIX/ruby/bin ]]; then
     add_to_path_once "$BREW_OPT_PREFIX/ruby/bin"
