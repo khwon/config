@@ -1,21 +1,22 @@
-[include]
-  path = ~/.gitconfig_local
 [core]
-  excludesfile = /Users/khwon/.gitignore_global
+  excludesfile = ~/.gitignore_global
   editor = vim
   autocrlf = input
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [color]
-	ui = auto
+  ui = auto
+[init]
+  defaultBranch = main
+[pull]
+  rebase = true
 [push]
-	default = simple
-
+  default = simple
+[fetch]
+  prune = true
 [merge]
   renamelimit = 2048
 [diff]
-	compactionHeuristic = true
+  algorithm = histogram
+[rerere]
+  enabled = true
+[include]
+  path = ~/.gitconfig_local
