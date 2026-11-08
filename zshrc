@@ -135,7 +135,6 @@ zinit light yous/vanilli.sh
 
 #zinit light khwon/lime
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit light rimraf/k
 
 # Syntax-highlighting for Zshell – fine granularity, number of features, 40 work
 # hours themes (short name F-Sy-H)
@@ -146,7 +145,7 @@ else
   compinit
   zinit cdreplay -q
 fi
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 zinit snippet OMZP::extract
 zinit snippet OMZL::functions.zsh
