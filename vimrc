@@ -369,3 +369,8 @@ highlight ALEWarning ctermbg=232
 let g:echodoc#enable_at_startup = 1
 set noshowmode
 
+try
+  source ~/.vimrc_local
+catch
+  " Just ignore it when it doesn't exist.
+endtry
