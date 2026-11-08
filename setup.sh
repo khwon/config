@@ -16,7 +16,6 @@ install_rc tmux.conf
 install_rc bashrc
 install_rc zshrc
 install_rc p10k.zsh
-install_rc railsrc
 
 install_rc gitignore_global
 install_rc gitconfig
