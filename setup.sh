@@ -24,8 +24,6 @@ install_rc gitconfig
 chsh -s `which zsh`
 
 mkdir ~/bin
-cp $DIR/safe-reattach-to-user-namespace ~/bin
-chmod +x ~/bin/safe-reattach-to-user-namespace
 
 BREW=""
 if [[ -e /usr/local/bin/brew ]]; then
