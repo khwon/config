@@ -39,28 +39,22 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER='open'
   export DISPLAY=:0
   add_to_path_once "/usr/local/bin"
-  # alternative homebrew installation path
-  if [[ -e /usr/local/homebrew/bin && ! -e /usr/local/bin/brew ]]; then
-    add_to_path_once "/usr/local/homebrew/bin"
-  fi
-  if [[ -e /opt/homebrew/bin ]]; then
-    add_to_path_once "/opt/homebrew/bin"
-  fi
   export CLICOLOR=1
   export LSCOLORS="ExFxCxDxBxegedabagacad"
 fi
 
 if [[ "$OSTYPE" == linux* ]]; then
   alias ls='ls --color=auto'
-  if [[ -e $HOME/.linuxbrew/bin ]]; then
-    eval $($HOME/.linuxbrew/bin/brew shellenv)
-  fi
-  if [[ -e /home/linuxbrew/.linuxbrew ]]; then
-    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-  fi
 fi
 
-#brew settings
+# brew settings
+for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew /usr/local/homebrew/bin/brew
+  /home/linuxbrew/.linuxbrew/bin/brew "$HOME/.linuxbrew/bin/brew"; do
+  if [[ -x "$brew_bin" ]]; then
+    eval "$("$brew_bin" shellenv)"
+    break
+  fi
+done
 if command -v brew >/dev/null; then
   BREW_PREFIX="$(brew --prefix)"
   if [[ -e $BREW_PREFIX/opt ]]; then
@@ -77,7 +71,7 @@ if command -v brew >/dev/null; then
   if [[ -e $BREW_OPT_PREFIX/ruby/bin ]]; then
     add_to_path_once "$BREW_OPT_PREFIX/ruby/bin"
   fi
-  add_to_path_once $(gem environment | grep "EXECUTABLE DIRECTORY" | awk '{print $NF}')
+  add_to_path_once "$(ruby -e 'print Gem.bindir' 2>/dev/null)"
 fi
 
 if [[ -e $HOME/.rvm ]]; then
@@ -96,11 +90,6 @@ fi
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-export WORKON_HOME=~/.virtualenvs
-source_if_exists /usr/local/bin/virtualenvwrapper.sh
-
-function gi() { curl https://www.gitignore.io/api/$@ ;}
 
 source_if_exists $HOME/.zshrc_local
 
