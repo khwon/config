@@ -207,7 +207,9 @@ set cursorline
 set nojoinspaces
 
 " Supress 'Added cscope database ~'
-set nocscopeverbose
+if has('cscope')
+  set nocscopeverbose
+endif
 
 "---------------- Tagbar ----------------------
 " F4 : Switch on/off Tagbar
