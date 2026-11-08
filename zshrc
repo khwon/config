@@ -155,9 +155,9 @@ else
 fi
 zinit light zdharma/fast-syntax-highlighting
 
-zinit ice svn
-zinit snippet OMZ::plugins/extract
-zinit snippet OMZ::lib/termsupport.zsh
+zinit snippet OMZP::extract
+zinit snippet OMZL::functions.zsh
+zinit snippet OMZL::termsupport.zsh
 
 # Load autojump
 autojump_locations=(
