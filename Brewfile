@@ -1,7 +1,5 @@
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/command-not-found"
-tap "homebrew/core"
+cask_args no_quarantine: true
+
 brew "mas"
 brew "autojump", args: ["HEAD"]
 brew "binutils", link: true

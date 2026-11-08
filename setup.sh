@@ -34,17 +34,8 @@ if [[ -e /opt/homebrew/bin/brew ]]; then
 fi
 
 if [[ -e $BREW ]]; then
-  $BREW bundle --file=$DIR/Brewfile
-  $($BREW --prefix)/opt/fzf/install
-  if [[ "$OSTYPE" == darwin* ]]; then
-    for cask in $($BREW cask list); do
-      APP="$($BREW info "$cask" --cask |
-        awk '/.* \(App\)/ { sub(" \\(App\\)",""); print  }')"
-      if [[ ! -z "$APP" ]]; then
-        sudo xattr -dr "/Applications/$APP"
-      fi
-    done
-  fi
+  $BREW bundle --file="$DIR/Brewfile"
+  $($BREW --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
 fi
 
 # neovim
