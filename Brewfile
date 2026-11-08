@@ -1,5 +1,3 @@
-cask_args no_quarantine: true
-
 brew "mas"
 brew "binutils", link: true
 brew "btop"
