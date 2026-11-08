@@ -12,7 +12,6 @@ function install_rc()
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 install_rc screenrc
 install_rc vimrc
-install_rc ycm_extra_conf.py
 install_rc tmux.conf
 install_rc bashrc
 install_rc zshrc
