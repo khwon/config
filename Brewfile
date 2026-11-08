@@ -2,7 +2,6 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/command-not-found"
 tap "homebrew/core"
-tap "neovim/neovim"
 brew "mas"
 brew "autojump", args: ["HEAD"]
 brew "binutils", link: true
@@ -31,18 +30,16 @@ brew "wget"
 brew "zsh"
 brew "zinit"
 cask "alfred"
+cask "brave-browser"
 cask "forklift"
-cask "google-chrome"
+cask "gureumkim"
 cask "hex-fiend"
 cask "iterm2"
 cask "keka"
 cask "qlstephen"
 cask "suspicious-package"
 mas "PDF Expert - Edit and Sign PDF", id:1055273043
-mas "Pastebot", id:1179623856
 mas "Amphetamine", id:937984704
-mas "Screenie - Screenshot Manager 2.2", id:965442961
 mas "WiFi Explorer", id:494803304
 mas "Battery Monitor", id:836505650
 mas "Movist", id:461788075
-mas "1Blocker", id:1107421413
