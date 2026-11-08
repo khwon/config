@@ -104,13 +104,6 @@ function gi() { curl https://www.gitignore.io/api/$@ ;}
 
 source_if_exists $HOME/.zshrc_local
 
-# configure thefuck
-if [[ -e /usr/local/bin/fuck ]]; then
-  # eval $(thefuck --alias)
-  # dirty hack for startup time
-  alias fuck='TF_CMD=$(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 TF_SHELL_ALIASES=$(alias) thefuck $(fc -ln -1 | tail -n 1)) && eval $TF_CMD ; test -n "$TF_CMD" && print -s $TF_CMD'
-fi
-
 # orders for finding in manpages
 MANSECT="2:3:3p:1:1p:8:4:5:6:7:9:0p:tcl:n:l:p:o"
 export MANSECT
@@ -159,20 +152,9 @@ zinit snippet OMZP::extract
 zinit snippet OMZL::functions.zsh
 zinit snippet OMZL::termsupport.zsh
 
-# Load autojump
-autojump_locations=(
-  "$HOME/.autojump/etc/profile.d/autojump.sh"
-  "/etc/profile.d/autojump.zsh"
-  "/usr/share/autojump/autojump.zsh"
-)
-if [ -n "$BREW_PREFIX" ]; then
-  autojump_locations=($autojump_locations "$BREW_PREFIX/etc/autojump.sh")
+if command -v zoxide >/dev/null; then
+  eval "$(zoxide init zsh)"
 fi
-for loc in $autojump_locations; do
-  if source_if_exists $loc; then
-    break
-  fi
-done
 
 if ! source_if_exists ~/.fzf.zsh; then
   source_if_exists /usr/share/doc/fzf/examples/completion.zsh
