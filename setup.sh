@@ -3,7 +3,7 @@
 function install_rc()
 {
   echo "installing '$1'.."
-  if [ -e "$HOME/.$1" ]; then
+  if [ -e "$HOME/.$1" ] || [ -L "$HOME/.$1" ]; then
     mv "$HOME/.$1" "$HOME/.$1.old"
   fi
   ln -s "$DIR/$1" "$HOME/.$1"
@@ -21,9 +21,11 @@ install_rc railsrc
 install_rc gitignore_global
 install_rc gitconfig
 
-chsh -s `which zsh`
+if [["$SHELL" != */zsh ]]; then
+  chsh -s "$(command -v zsh)"
+fi
 
-mkdir ~/bin
+mkdir -p ~/bin
 
 BREW=""
 if [[ -e /usr/local/bin/brew ]]; then
@@ -39,9 +41,9 @@ if [[ -e $BREW ]]; then
 fi
 
 # neovim
-mkdir ~/.config
-ln -s ~/.vim ~/.config/nvim
-ln -s ~/.vimrc ~/.config/nvim/init.vim
+mkdir -p ~/.vim ~/.config
+ln -sfn ~/.vim ~/.config/nvim
+ln -sfn ~/.vimrc ~/.config/nvim/init.vim
 
 if [[ "$OSTYPE" == darwin* ]]; then
   $DIR/osx.sh
