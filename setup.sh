@@ -20,7 +20,7 @@ install_rc p10k.zsh
 install_rc gitignore_global
 install_rc gitconfig
 
-if [["$SHELL" != */zsh ]]; then
+if [[ "$SHELL" != */zsh ]]; then
   chsh -s "$(command -v zsh)"
 fi
 
