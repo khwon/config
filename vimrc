@@ -82,6 +82,7 @@ Plug 'khwon/echodoc.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 " :Codi for scratchpad
 Plug 'metakirby5/codi.vim'
+Plug 'pechorin/any-jump.vim'
 
 
 if has('mac') || has('macunix')
@@ -238,11 +239,6 @@ autocmd VimEnter * if (open_sidebar && exists(':TagbarOpen')) | call OpenTagbar(
 autocmd bufenter * if (winnr("$") == 1 && bufname("%") == "Tagbar") | q | endif " exit vim if only sidebar remains
 
 " EasyMotion
-let g:EasyMotion_leader_key = '<Leader>'
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 
 map  / <Plug>(easymotion-sn)
