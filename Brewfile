@@ -25,7 +25,7 @@ cask "brave-browser"
 cask "forklift"
 cask "gureumkim"
 cask "hex-fiend"
-cask "iterm2"
+cask "kitty"
 cask "keka"
 cask "suspicious-package"
 mas "PDF Expert - Edit and Sign PDF", id:1055273043

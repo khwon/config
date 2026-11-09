@@ -44,6 +44,8 @@ mkdir -p ~/.vim ~/.config
 ln -sfn ~/.vim ~/.config/nvim
 ln -sfn ~/.vimrc ~/.config/nvim/init.vim
 
+ln -sfn "$DIR/kitty" "~/.config/kitty"
+
 if [[ "$OSTYPE" == darwin* ]]; then
   $DIR/osx.sh
 fi
